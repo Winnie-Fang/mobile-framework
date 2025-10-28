@@ -1,0 +1,9 @@
+INFO     root:appium_manager.py:29 🚀 嘗試啟動 Appium Server（port 4723）...
+INFO     root:appium_manager.py:42 ✅ Appium Server 已啟動在 port 4723
+INFO     root:conftest.py:21 🟢 Appium server for Android started on port 4723
+INFO     root:test_iWA_login.py:13 沒有 Booted 設備
+INFO     root:test_iWA_login.py:13 iPhone UDID: 00008101-000129C9269BA01E
+INFO     root:test_iWA_login.py:13 國泰智能財富顧問 > 輸入帳號 > 輸入(03077) 
+INFO     root:test_iWA_login.py:14 國泰智能財富顧問 > 輸入密碼 > 輸入(275314) 
+INFO     root:test_iWA_login.py:15 國泰智能財富顧問 > 登入 > 點擊
+INFO     root:conftest.py:38 🧹 Teardown complete
