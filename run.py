@@ -20,20 +20,19 @@ if __name__ == "__main__":
 
     # pytest.main()
     # pytest.main(['--platform','ios',"-m","iWA_login","--app_path",'/Users/twinb00551192/Desktop/QA_file/iWA-DEV.app'])
-    # pytest.main([
-    #     '--platform','android',
-    #     '-m','android_login',
-    #     '--app_path','/Users/twinb00551192/Desktop/ihv-app-android-UAT/app-artifact.apk',
-    #     '--alluredir=./reports/allure_tmp'
-    # ])
     pytest.main([
-        '--platform','ios',
-        '-m','iWA_login',
-        '--app_path','/Users/twinb00551192/Desktop/QA_file/iWA-DEV.app',
-        # '--app_path','/Users/twinb00551192/Desktop/WMSAPP-QA-IOS/iWA-DEV.app'
-        '--alluredir','./reports/allure_tmp',
-        '-n','2'
+        '--platform','android',
+        '-m','gmb_login',
+        '--alluredir=./reports/allure_tmp'
     ])
+    # pytest.main([
+    #     '--platform','ios',
+    #     '-m','iWA_login',
+    #     '--app_path','/Users/twinb00551192/Desktop/QA_file/iWA-DEV.app',
+    #     # '--app_path','/Users/twinb00551192/Desktop/WMSAPP-QA-IOS/iWA-DEV.app'
+    #     '--alluredir','./reports/allure_tmp',
+    #     '-n','2'
+    # ])
 
 
     allure_generator.output_allure_html()

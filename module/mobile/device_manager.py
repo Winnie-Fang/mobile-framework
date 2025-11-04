@@ -16,7 +16,7 @@ class DeviceManager:
     STATIC_IOS_DRIVER = None
     Log.PRINT = True
     Log.RECORD = True
-    KEEP_APP_STATE = False
+    KEEP_APP_STATE = True
     STATIC_DRIVER = None
 
     @classmethod
@@ -294,27 +294,34 @@ class DeviceManager:
         options.set_capability('automationName', 'UiAutomator2')
         options.set_capability('autoGrantPermissions', True)
         options.set_capability('enableMultiWindows', True)
-        options.set_capability('appPackage', 'com.cathaybk.ihave.uat')
-        options.set_capability('appActivity', 'com.cathaybk.ihave.BootActivity')
-        options.set_capability('appWaitActivity', "com.cathaybk.ihave.loginpage.LoginActivity")
+        options.set_capability('appPackage', 'com.cathaybk.geb.cubuat')
+        options.set_capability('appActivity', 'com.cathaybk.geb.feature.BootActivity')
+        options.set_capability('appWaitActivity', "com.cathaybk.geb.feature.login.LoginActivity")
         # options.set_capability('appActivity', 'com.cathaybk.nemo.android.MmbActivity')
         options.set_capability('noReset', cls.KEEP_APP_STATE)
         options.set_capability('shouldTerminateApp', True)
         options.set_capability('disableIdLocatorAutocompletion', True)
         options.set_capability('waitForIdleTimeout', 100)
         # options.set_capability('app', "/Users/twinb00551192/Desktop/ihave_uat/iHave.apk")
-        options.set_capability('app', PATH)
+        # options.set_capability('app', PATH)
         # 動態 systemPort（平行 Android 必須唯一）
-        system_port = getattr(global_adapter.CommonVar, 'SYSTEM_PORT', None)
-        if system_port:
-            options.set_capability('systemPort', system_port)
+        # options.set_capability("systemPort",  8201)
+        # system_port = getattr(global_adapter.CommonVar, 'SYSTEM_PORT', None)
+        # if system_port:
+        #     options.set_capability('systemPort', system_port)
+        #     options.set_capability('newCommandTimeout', 1800)  # 1800 秒
+        #     logstack.info("Debug模式:newCommandTimeout設為 1800 秒")
+        #     options.set_capability('newCommandTimeout', 100)  # 默認為 100 秒
+        #     logstack.info(f"非Debug模式:newCommandTimeout設為 100 秒")
+
+        if cls.is_debug_mode():
             options.set_capability('newCommandTimeout', 1800)  # 1800 秒
             logstack.info(f"Debug模式:newCommandTimeout設為 1800 秒")
-            logstack.info("Debug模式:newCommandTimeout設為 1800 秒")
+        else:
             options.set_capability('newCommandTimeout', 100)  # 默認為 100 秒
             logstack.info(f"非Debug模式:newCommandTimeout設為 100 秒")
 
-        driver = webdriver.Remote(Appium.LOCALHOST + ':4801', options=options)
+        driver = webdriver.Remote(Appium.LOCALHOST + ':4850', options=options)
         # driver = webdriver.Remote(Appium.LOCALHOST + ':4723', options=options)
         return driver
 
@@ -374,7 +381,6 @@ class DeviceManager:
         options.set_capability('includeSafariInWebviews', True)
         options.set_capability('newCommandTimeout', 3000)  # 设置新命令的超时时间，单位是秒
         # options.set_capability('app', "/Users/twinb00551192/Desktop/QA_file/iWA-DEV.app")
-        # options.set_capability('app', "data/app/ios_noscreenshot.app")
         options.set_capability('wdaLocalPort', 8102)
         # options.set_capability('mjpegServerPort', 9100)
         options.set_capability('app',PATH)
