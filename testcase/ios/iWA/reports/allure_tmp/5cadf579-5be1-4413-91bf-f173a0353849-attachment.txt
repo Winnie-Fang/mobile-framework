@@ -1,1 +1,0 @@
-✅ Appium Server 已啟動在 port 4723

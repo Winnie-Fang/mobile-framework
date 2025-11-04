@@ -5,45 +5,74 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from module.mobile.component.base_object import BaseObject
 from module.mobile.component.basic_component import BasicComponent
-from module.mobile.component.sliding_object import SlidingObject
 
 
-class OverviewPage(BaseObject):
+class GMBOverviewPage(BaseObject):
     def __init__(self):
         super().__init__()
         self.set_remark("總覽頁")
         self.driver = DeviceManager.get_driver()
-    #
-    # def prerequisites(self) -> None:
-    #     self.overview_title().assert_visible()
 
     def overview_title(self):
         return BasicComponent(
             lambda : WebDriverWait(self.driver,30).until(
-                EC.visibility_of_element_located((AppiumBy.ID,"com.cathaybk.ihave.uat:id/toolbar_title"))
+                EC.visibility_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR,'new UiSelector().text("總覽").instance(0)'))
             ),
             remark=f"{self.remark()} > 總覽頁標題"
         )
 
-    def menu(self):
+    def to_do_list(self):
         return BasicComponent(
-            lambda :self.driver.find_element(AppiumBy.ID,"com.cathaybk.ihave.uat:id/title"),
-            remark= f"{self.remark()} > 菜單標題"
+            lambda : self.driver.find_element(AppiumBy.ID,'com.cathaybk.geb.cubuat:id/toDoListTextView'),
+            remark=f"{self.remark()} > 處理清單"
         )
 
-    def overview_btn(self):
+    def to_do_trade(self):
         return BasicComponent(
-            lambda: self.driver.find_element(AppiumBy.ID, "com.cathaybk.ihave.uat:id/navigation_overview"),
-            remark=f"{self.remark()} > 總覽頁面"
+            lambda : self.driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,'new UiSelector().text("待覆核交易")'),
+            remark=f"{self.remark()} > 待覆核交易"
+        )
+    def recent_reserve(self):
+        return BasicComponent(
+            lambda : self.driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,'new UiSelector().text("近 1 年預約")'),
+            remark=f"{self.remark()} > 近一年預約"
+        )
+    def under_review(self):
+        return BasicComponent(
+            lambda : self.driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,'new UiSelector().text("送審中交易")'),
+            remark=f"{self.remark()} > 送審中交易"
+        )
+    def account_overview(self):
+        return BasicComponent(
+            lambda : self.driver.find_element(AppiumBy.ID,'com.cathaybk.geb.cubuat:id/accountOverviewTextView'),
+            remark=f"{self.remark()} > 帳戶摘要"
+        )
+    # ================================================= 總覽下方功能列 =================================================
+    def menu_bar(self):
+        return BasicComponent(
+            lambda : self.driver.find_element(AppiumBy.ID,'com.cathaybk.geb.cubuat:id/bottom_nav'),
+            remark=f"{self.remark()} > 總覽下方功能列"
+        )
+    def overview(self):
+        return BasicComponent(
+            lambda : self.driver.find_element(AppiumBy.ACCESSIBILITY_ID,'總覽'),
+            remark=f"{self.remark()} > 總覽功能"
+        )
+    def detail(self):
+        return BasicComponent(
+            lambda : self.driver.find_element(AppiumBy.ACCESSIBILITY_ID,'明細'),
+            remark=f"{self.remark()} > 明細功能"
         )
 
-    def person_btn(self):
+    def payment(self):
         return BasicComponent(
-            lambda: self.driver.find_element(AppiumBy.ID, "com.cathaybk.ihave.uat:id/navigation_settings"),
-            remark=f"{self.remark()} > 個人頁面"
+            lambda : self.driver.find_element(AppiumBy.ACCESSIBILITY_ID,'交易'),
+            remark=f"{self.remark()} > 交易功能"
         )
-    def question_btn(self):
+    def more(self):
         return BasicComponent(
-            lambda : self.driver.find_element(AppiumBy.ID,"com.cathaybk.ihave.uat:id/card_image"),
-            remark= f"{self.remark()} > Questions"
+            lambda : self.driver.find_element(AppiumBy.ACCESSIBILITY_ID,'更多'),
+            remark=f"{self.remark()} > 更多功能"
         )
+
+
