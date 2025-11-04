@@ -11,9 +11,9 @@ def appium_server(pytestconfig):
     根據 pytest 指令列參數初始化對應平台的 Appium 服務
     """
     # platform = global_adapter.CommonVar.PLATFORM.lower()
-    platform = 'ios'
+    platform = 'android'
     if platform == 'android':
-        AppiumManager(4801).start()
+        AppiumManager(4850).start()
         logging.info('🟢 Appium server for Android started on port 4801')
 
     elif platform == 'ios':
