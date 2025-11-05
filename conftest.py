@@ -20,7 +20,7 @@ def pytest_addoption(parser):
     # GlobalVar.PLATFORM = "ios"
 
     parser.addoption('--allure', action='store', default='allure', type=str, help="CI用，設置allure在執行機器的絕對路徑")
-    parser.addoption('--platform', action='store',  default='android', choices=['ios', 'android'], type=str,
+    parser.addoption('--platform', action='store',  default='ios', choices=['ios', 'android'], type=str,
                      help="設定測試平台")
     parser.addoption('--product', action='store', default='cube', choices=['cube'], type=str, help="設定測試產品")
     parser.addoption('--env', action='store', default='uat', choices=['stg', 'uat', 'ut'], type=str,
