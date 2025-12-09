@@ -374,7 +374,7 @@ class DeviceManager:
         # options.set_capability('udid', cls.get_booted_simulator_udid())
         options.set_capability('udid', 'E3B41C29-CC65-4BE0-9C39-BC27A5AF97C6')
         # options.set_capability('bundleId', IOS_CUBE_STG)
-        # options.set_capability('bundleId', "IOS_CUBE")
+        options.set_capability('bundleId', "com.cathaybk.geb")
         options.set_capability('noReset', cls.KEEP_APP_STATE)
         options.set_capability('forceAppLaunch', True)
         options.set_capability('includeSafariInWebviews', True)
@@ -382,7 +382,7 @@ class DeviceManager:
         options.set_capability('wdaLocalPort', 8102)
         # options.set_capability('mjpegServerPort', 9100)
         # options.set_capability('app',PATH)
-        options.set_capability('app','/Users/twinb00551192/Desktop/GMB/UAT_GlobalMyB2B.app')
+        # options.set_capability('app','/Users/twinb00551192/Desktop/GMB/UAT_GlobalMyB2B.app')
         driver = webdriver.Remote(Appium.LOCALHOST + Appium.PORT_4723, options=options)
         return driver
 

@@ -1,7 +1,7 @@
 from appium.webdriver import webdriver
 # from mypy.checkpattern import self_match_type_names
 
-# from page.ios.panel.keyboard import Keyboard
+from page.ios.panel.keyboard import Keyboard
 from page.ios.login import iOSLoginPage
 from page.ios.overview import iOSOverviewPage
 
@@ -14,6 +14,7 @@ class NavigatoriOSZh:
         self.__pre_login_page = None
         self.__ios_login_page = None
         self.__ios_overview_page = None
+        self.__keyboard = None
 
 
     # @property
@@ -30,4 +31,10 @@ class NavigatoriOSZh:
         if self.__ios_overview_page is None:
             self.__ios_overview_page = iOSOverviewPage()
         return self.__ios_overview_page
+    @property
+    def keyboard(self) -> Keyboard:
+        if self.__keyboard is None:
+            self.__keyboard = Keyboard()
+        return self.__keyboard
+
 
