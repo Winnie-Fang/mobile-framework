@@ -321,8 +321,8 @@ class DeviceManager:
             options.set_capability('newCommandTimeout', 100)  # 默認為 100 秒
             logstack.info(f"非Debug模式:newCommandTimeout設為 100 秒")
 
-        driver = webdriver.Remote(Appium.LOCALHOST + ':4850', options=options)
-        # driver = webdriver.Remote(Appium.LOCALHOST + ':4723', options=options)
+        # driver = webdriver.Remote(Appium.LOCALHOST + ':4850', options=options)
+        driver = webdriver.Remote(Appium.LOCALHOST + ':4723', options=options)
         return driver
 
     @classmethod

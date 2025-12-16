@@ -4,7 +4,7 @@ from appium.webdriver import webdriver
 from page.ios.panel.keyboard import Keyboard
 from page.ios.login import iOSLoginPage
 from page.ios.overview import iOSOverviewPage
-
+from page.ios.login_otp import iOSOTOPage
 
 
 class NavigatoriOSZh:
@@ -15,7 +15,7 @@ class NavigatoriOSZh:
         self.__ios_login_page = None
         self.__ios_overview_page = None
         self.__keyboard = None
-
+        self.__ios_otp_page = None
 
     # @property
     # def driver(self) -> webdriver:
@@ -26,15 +26,21 @@ class NavigatoriOSZh:
         if self.__ios_login_page is None:
             self.__ios_login_page = iOSLoginPage()
         return self.__ios_login_page
+
     @property
     def ios_overview_page(self) -> iOSOverviewPage:
         if self.__ios_overview_page is None:
             self.__ios_overview_page = iOSOverviewPage()
         return self.__ios_overview_page
+
     @property
     def keyboard(self) -> Keyboard:
         if self.__keyboard is None:
             self.__keyboard = Keyboard()
         return self.__keyboard
 
-
+    @property
+    def ios_otp_page(self) -> iOSOTOPage:
+        if self.__ios_otp_page is None:
+            self.__ios_otp_page = iOSOTOPage()
+        return self.__ios_otp_page

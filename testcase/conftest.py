@@ -13,7 +13,7 @@ def appium_server(pytestconfig):
     # platform = global_adapter.CommonVar.PLATFORM.lower()
     platform = 'ios'
     if platform == 'android':
-        AppiumManager(4850).start()
+        AppiumManager(4723).start()
         logging.info('🟢 Appium server for Android started on port 4850')
 
     elif platform == 'ios':
