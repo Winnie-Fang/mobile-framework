@@ -36,9 +36,14 @@ class Area:
 
 class Keyboard(BaseObject):
 
-    def __init__(self):
-        self.set_remark("鍵盤")
-        self.driver = DeviceManager.get_driver()
+    # def __init__(self):
+    #     self.set_remark("鍵盤")
+    #     self.driver = DeviceManager.get_driver()
+    def __init__(self, role=None):
+        super().__init__()
+        self.set_remark("鍵盤-多裝置測試")
+        self.role = role
+        self.driver = DeviceManager.get_driver(role=self.role)
 
     @property
     def earth(self):
@@ -222,9 +227,9 @@ class Keyboard(BaseObject):
         return {'x': rect['x'], 'y': rect['y'], 'width': rect['width'], 'height': rect['height']}
 
     def __get_coordinate(
-        self,
-        coordinate: Coordinate,
-        name: str
+            self,
+            coordinate: Coordinate,
+            name: str
     ) -> TupleCoordinate:
 
         # Check coordinate type.
@@ -244,9 +249,9 @@ class Keyboard(BaseObject):
         return coordinate
 
     def __get_offset(
-        self,
-        offset: Coordinate,
-        area: tuple[int, int, int, int]
+            self,
+            offset: Coordinate,
+            area: tuple[int, int, int, int]
     ) -> tuple[int, int, int, int]:
 
         start_x, start_y, end_x, end_y = self.__get_coordinate(offset, 'offset')
@@ -278,9 +283,9 @@ class Keyboard(BaseObject):
         return area
 
     def __get_offset(
-        self,
-        offset: Coordinate,
-        area: tuple[int, int, int, int]
+            self,
+            offset: Coordinate,
+            area: tuple[int, int, int, int]
     ) -> tuple[int, int, int, int]:
 
         start_x, start_y, end_x, end_y = self.__get_coordinate(offset, 'offset')
@@ -297,11 +302,11 @@ class Keyboard(BaseObject):
         return offset
 
     def swipe_by(
-        self,
-        offset: Coordinate = Offset.UP,
-        area: Coordinate = Area.FULL,
-        duration: int = 1000,
-        times: int = 1
+            self,
+            offset: Coordinate = Offset.UP,
+            area: Coordinate = Area.FULL,
+            duration: int = 1000,
+            times: int = 1
     ) -> AppiumWebDriver:
 
         global driver

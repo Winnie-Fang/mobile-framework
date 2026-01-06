@@ -5,17 +5,22 @@ from page.ios.panel.keyboard import Keyboard
 from page.ios.login import iOSLoginPage
 from page.ios.overview import iOSOverviewPage
 from page.ios.login_otp import iOSOTOPage
+from page.ios.login_otp_multi import MUiOSOTPage
 
 
 class NavigatoriOSZh:
 
-    def __init__(self):
+    def __init__(self, role=None):
         # self.__driver = None
+        self.role = role
+
         self.__pre_login_page = None
         self.__ios_login_page = None
         self.__ios_overview_page = None
         self.__keyboard = None
         self.__ios_otp_page = None
+        self.__ios_otp_page_mu = {}
+        self.__keyboard_mu = {}
 
     # @property
     # def driver(self) -> webdriver:
@@ -44,3 +49,13 @@ class NavigatoriOSZh:
         if self.__ios_otp_page is None:
             self.__ios_otp_page = iOSOTOPage()
         return self.__ios_otp_page
+
+    def ios_otp_page_mu(self, role: str) -> MUiOSOTPage:
+        if role not in self.__ios_otp_page_mu:
+            self.__ios_otp_page_mu[role] = MUiOSOTPage(role=role)
+        return self.__ios_otp_page_mu[role]
+
+    def keyboard_mu(self, role: str) -> Keyboard:
+        if role not in self.__keyboard_mu:
+            self.__keyboard_mu[role] = Keyboard(role=role)
+        return self.__keyboard_mu[role]

@@ -3,13 +3,20 @@ import re
 import subprocess
 import sys
 
+from typing import Optional, Dict, Any
+import json
+
 from appium import webdriver
 from appium.options.common import AppiumOptions
 from huskypo import Appium, Log, logstack
+from huskypo.logstack import exception
 
 # from module.ios.native_appid import IOS_CUBE
 from module.mobile.globalvar import GlobalVar
 from framework import global_adapter
+import logging
+from framework import path
+import os
 
 
 class DeviceManager:
@@ -18,6 +25,27 @@ class DeviceManager:
     Log.RECORD = True
     KEEP_APP_STATE = True
     STATIC_DRIVER = None
+
+    DEVICES_CONF: Optional[dict] = None  # 讀進來的 JSON
+    DRIVERS: Dict[str, Any] = {}  # role -> driver
+    DEFAULT_ROLE: Optional[str] = None  # e.g. "old"
+    JSON_PATH = os.path.join(path.Data.JSON, 'devices.json')
+
+    @classmethod
+    def load_devices(cls, config_path: Optional[str] = None):
+        """
+        載入 devices.json，啟用多裝置模式（lazy init）
+        """
+        config_path = config_path or cls.JSON_PATH
+        try:
+            with open(config_path, "r", encoding="utf-8") as f:
+                cls.DEVICES_CONF = json.load(f)
+            cls.DEFAULT_ROLE = cls.DEVICES_CONF.get("defaultRole")
+            cls.DRIVERS = {}
+        except FileNotFoundError:
+            logging.error(f"載入 找不到json檔: {config_path}")
+        except Exception as e:
+            logging.error(f"載入 devices.json 發生錯誤: {e}")
 
     @classmethod
     def adb_executor(cls, adb_commands: list) -> subprocess.CompletedProcess:
@@ -208,7 +236,38 @@ class DeviceManager:
                 logstack.warning(f"Failed to uninstall {package}: {e}")
 
     @classmethod
-    def get_driver(cls):
+    def get_driver(cls, role: Optional[str] = None):
+        # ✅ 有傳 role → 視為多裝置需求，自動載入 devices.json（若尚未載）
+        if role is not None and cls.DEVICES_CONF is None:
+            cls.load_devices()  # 使用 DEFAULT_DEVICES_JSON
+
+        # 多裝置模式
+        if cls.DEVICES_CONF:
+            if role is None:
+                role = cls.DEFAULT_ROLE
+
+            if role in cls.DRIVERS:
+                return cls.DRIVERS[role]
+
+            device = cls.DEVICES_CONF["devices"][role]
+            platform = device["platform"].lower()
+            server_url = Appium.LOCALHOST + ":4723"
+
+            if platform == "android":
+                driver = cls._create_android_from_device(device, server_url)
+            elif platform == "ios":
+                driver = cls._create_ios_from_device(device, server_url)
+            else:
+                raise ValueError(f"Unsupported platform: {platform}")
+
+            cls.DRIVERS[role] = driver
+            return driver
+
+        # 單裝置模式（舊行為）
+        return cls._get_single_driver()
+
+    @classmethod
+    def _get_single_driver(cls):
         """獲得當前平台的 Appium Driver"""
         if cls.STATIC_DRIVER is None:
             cls.STATIC_DRIVER = cls._create_driver()
@@ -217,7 +276,6 @@ class DeviceManager:
     @classmethod
     def __is_ios_device(cls):
         """
-        判斷當前設備是否為 iOS 實機。
 
         返回:
         bool: 如果是 iOS 實機返回 True，否則返回 False
@@ -241,17 +299,11 @@ class DeviceManager:
         return False
 
     @classmethod
-    def __is_android_deivces(cls):
+    def __is_android_deivces(cls) -> bool:
         """
         判斷當前設備是否為 Android 設備。
-
-        返回:
-        bool: 如果是 Android 設備返回 True，否則返回 False
         """
-
-        if cls.get_android_devices:
-            return True
-        return False
+        return bool(cls.get_android_devices())
 
     @classmethod
     def _create_driver(cls):
@@ -386,6 +438,81 @@ class DeviceManager:
         driver = webdriver.Remote(Appium.LOCALHOST + Appium.PORT_4723, options=options)
         return driver
 
+    @classmethod
+    def _create_android_from_device(cls, device: dict, server_url: str):
+        """
+        多裝置模式：由 JSON 建立 Android driver
+        必填：udid, systemPort
+        """
+        if "udid" not in device or "systemPort" not in device:
+            raise ValueError(f"Android device config 必須包含 udid/systemPort，收到：{device}")
+
+        options = AppiumOptions()
+        options.set_capability("platformName", "Android")
+        options.set_capability("automationName", "UiAutomator2")
+
+        # 多裝置必備
+        options.set_capability("udid", device["udid"])
+        options.set_capability("deviceName", device.get("deviceName", device["udid"]))
+        options.set_capability("systemPort", int(device["systemPort"]))
+
+        # 你原本的固定設定（先不抽 helper，維持最小改動）
+        options.set_capability("autoGrantPermissions", True)
+        options.set_capability("enableMultiWindows", True)
+        options.set_capability("appPackage", "com.cathaybk.geb.cubuat")
+        options.set_capability("appActivity", "com.cathaybk.geb.feature.BootActivity")
+        options.set_capability("appWaitActivity", "com.cathaybk.geb.feature.login.LoginActivity")
+        options.set_capability("noReset", cls.KEEP_APP_STATE)
+        options.set_capability("shouldTerminateApp", True)
+        options.set_capability("disableIdLocatorAutocompletion", True)
+        options.set_capability("waitForIdleTimeout", 100)
+        options.set_capability("newCommandTimeout", 1800 if cls.is_debug_mode() else 100)
+
+        return webdriver.Remote(server_url, options=options)
+
+    @classmethod
+    def _create_ios_from_device(cls, device: dict, server_url: str):
+        """
+        多裝置模式：由 JSON 建立 iOS driver
+        必填：udid, wdaLocalPort
+        且需要 app 或 bundleId 其中一個
+        """
+        if "udid" not in device or "wdaLocalPort" not in device:
+            raise ValueError(f"iOS device config 必須包含 udid/wdaLocalPort，收到：{device}")
+
+        options = AppiumOptions()
+        options.set_capability("platformName", "iOS")
+        options.set_capability("automationName", "XCUITest")
+
+        # 多裝置必備
+        options.set_capability("udid", device["udid"])
+        options.set_capability("wdaLocalPort", int(device["wdaLocalPort"]))
+
+        # 可選
+        # options.set_capability("deviceName", device.get("deviceName", "iPhone"))
+
+        # app / bundleId 二選一（實機通常 app，模擬器通常 bundleId）
+        if device.get("app"):
+            options.set_capability("app", device["app"])
+        elif device.get("bundleId"):
+            options.set_capability("bundleId", device["bundleId"])
+        else:
+            raise ValueError("iOS device config 需要提供 app 或 bundleId 其中一個")
+
+        # 固定設定（保留你原本常用的）
+        options.set_capability("noReset", cls.KEEP_APP_STATE)
+        options.set_capability("forceAppLaunch", True)
+        options.set_capability("includeSafariInWebviews", True)
+        options.set_capability("newCommandTimeout", int(device.get("newCommandTimeout", 3000)))
+        options.set_capability("showXcodeLog", True)
+        options.set_capability("xcodeOrgId", device.get("xcodeOrgId", "cathayqa"))
+
+        if "mjpegServerPort" in device:
+            options.set_capability("mjpegServerPort", int(device["mjpegServerPort"]))
+
+        return webdriver.Remote(server_url, options=options)
+
 
 if __name__ == '__main__':
-    print(DeviceManager.get_booted_simulator_udid())
+    # print(DeviceManager.get_booted_simulator_udid())
+    print(DeviceManager.load_devices())
