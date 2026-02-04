@@ -21,7 +21,7 @@ if __name__ == "__main__":
     # pytest.main()
     pytest.main([
         '--platform','ios',
-        '-m','ios_login',
+        '-m','overview',
         '--alluredir=./reports/allure_tmp'
     ])
     # pytest.main([

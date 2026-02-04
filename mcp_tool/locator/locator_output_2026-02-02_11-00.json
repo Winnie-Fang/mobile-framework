@@ -1,0 +1,86 @@
+{
+  "platforms": {
+    "Android": {
+      "pages": {
+        "登入頁": [
+          {
+            "name": "企業戶ID輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/companyIdEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "65141474"
+              },
+              "actions": ["set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "使用者代號輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/userNameEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "admin01"
+              },
+              "actions": ["set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "使用者密碼輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/pdEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "Ab123456"
+              },
+              "actions": ["set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "登入按鈕",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/loginButton",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "登入"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "platforms": {
+    "Android": {
+      "pages": {
+        "登入頁": [
+          {
+            "name": "企業戶ID輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/companyIdEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "65141474"
+              },
+              "actions": ["set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "使用者代號輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/userNameEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "user002"
+              },
+              "actions": ["set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "使用者密碼輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/pdEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "Ab123456"
+              },
+              "actions": ["set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "登入按鈕",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/loginButton",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "登入"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          }
+        ],
+        "總覽頁": [
+          {
+            "name": "掃描圖標",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/scanImageView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": ""
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "選單圖標",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/menuImageView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": ""
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "語言選擇區域",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/locale_linearLayout",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": ""
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "分頁佈局",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/tabLayout",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": ""
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "登入企網銀分頁",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "登入企網銀",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": ""
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "驗證網銀交易分頁",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "驗證網銀交易",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": ""
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "回收視圖",
+            "strategy": "AppiumBy.CLASS_NAME",
+            "selector": "androidx.recyclerview.widget.RecyclerView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": ""
+              },
+              "actions": [],
+              "error": ""
+            }
+          }
+        ]
+      }
+    }
+  }
+}

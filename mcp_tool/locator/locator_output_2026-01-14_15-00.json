@@ -1,0 +1,281 @@
+{
+  "platforms": {
+    "Android": {
+      "pages": {
+        "登入頁面": [
+          {
+            "name": "驗證網銀交易按鈕",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "驗證網銀交易",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "驗證網銀交易"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          }
+        ],
+        "驗證頁面": [
+          {
+            "name": "解鎖按鈕",
+            "strategy": "AppiumBy.XPATH",
+            "selector": "//*[@text='解鎖']",
+            "note": "使用 XPath 因為沒有 accessibility id 或 resource-id",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "解鎖"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          }
+        ],
+        "輸入密碼頁面": [
+          {
+            "name": "密碼輸入框1",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/codeInput1",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "2"
+              },
+              "actions": ["set_value"],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          },
+          {
+            "name": "密碼輸入框2",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/codeInput2",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "7"
+              },
+              "actions": ["set_value"],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          },
+          {
+            "name": "密碼輸入框3",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/codeInput3",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "5"
+              },
+              "actions": ["set_value"],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          },
+          {
+            "name": "密碼輸入框4",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/codeInput4",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "3"
+              },
+              "actions": ["set_value"],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          },
+          {
+            "name": "密碼輸入框5",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/codeInput5",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "1"
+              },
+              "actions": ["set_value"],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          },
+          {
+            "name": "密碼輸入框6",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/codeInput6",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "4"
+              },
+              "actions": ["set_value"],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          },
+          {
+            "name": "確認按鈕",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/transactionRightButton",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "確認"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          }
+        ],
+        "驗證結果頁面": [
+          {
+            "name": "沒有待驗證交易文字",
+            "strategy": "AppiumBy.XPATH",
+            "selector": "//android.widget.TextView[@text=\"沒有待驗證交易\"]",
+            "note": "使用 XPath 因為沒有 accessibility id 或 resource-id",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "沒有待驗證交易"
+              },
+              "actions": [],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          },
+          {
+            "name": "更多設定按鈕",
+            "strategy": "AppiumBy.XPATH",
+            "selector": "(//android.widget.TextView[@text=\"更多設定\"])[2]",
+            "note": "使用 XPath 因為有多個元素",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "更多設定"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          }
+        ],
+        "更多設定頁面": [
+          {
+            "name": "更換手機選項",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/changeMobileConstraintLayout",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "更換手機"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          }
+        ],
+        "更換手機頁面": [
+          {
+            "name": "創建啟用碼文字",
+            "strategy": "AppiumBy.XPATH",
+            "selector": "//android.widget.TextView[@text=\"創建啟用碼\"]",
+            "note": "使用 XPath 因為沒有 accessibility id 或 resource-id",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "創建啟用碼"
+              },
+              "actions": [],
+              "error": "",
+              "timestamp": "2026-01-14T15:00:00+08:00"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+

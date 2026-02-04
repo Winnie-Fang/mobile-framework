@@ -1,0 +1,91 @@
+{
+  "登入頁": [
+    {
+      "name": "登入企網銀按鈕",
+      "platform": "Android",
+      "strategy": "AppiumBy.ACCESSIBILITY_ID",
+      "selector": "登入企網銀",
+      "note": ""
+    },
+    {
+      "name": "企業戶ID輸入框",
+      "platform": "Android",
+      "strategy": "AppiumBy.ID",
+      "selector": "com.cathaybk.geb.cubuat:id/companyIdEditText",
+      "note": ""
+    },
+    {
+      "name": "使用者代碼輸入框",
+      "platform": "Android",
+      "strategy": "AppiumBy.ID",
+      "selector": "com.cathaybk.geb.cubuat:id/userNameEditText",
+      "note": ""
+    },
+    {
+      "name": "使用者密碼輸入框",
+      "platform": "Android",
+      "strategy": "AppiumBy.ID",
+      "selector": "com.cathaybk.geb.cubuat:id/pdEditText",
+      "note": ""
+    },
+    {
+      "name": "登入按鈕",
+      "platform": "Android",
+      "strategy": "AppiumBy.ID",
+      "selector": "com.cathaybk.geb.cubuat:id/loginButton",
+      "note": ""
+    },
+    {
+      "name": "下次再說按鈕",
+      "platform": "Android",
+      "strategy": "AppiumBy.ANDROID_UIAUTOMATOR",
+      "selector": "new UiSelector().text(\"下次再說\")",
+      "note": ""
+    },
+    {
+      "name": "我知道了按鈕",
+      "platform": "Android",
+      "strategy": "AppiumBy.ANDROID_UIAUTOMATOR",
+      "selector": "new UiSelector().text(\"我知道了\")",
+      "note": ""
+    }
+  ],
+  "總覽頁": [
+    {
+      "name": "總覽標題",
+      "platform": "Android",
+      "strategy": "AppiumBy.ANDROID_UIAUTOMATOR",
+      "selector": "new UiSelector().text(\"總覽\")",
+      "note": ""
+    },
+    {
+      "name": "總覽選項",
+      "platform": "Android",
+      "strategy": "AppiumBy.ACCESSIBILITY_ID",
+      "selector": "總覽",
+      "note": ""
+    },
+    {
+      "name": "明細選項",
+      "platform": "Android",
+      "strategy": "AppiumBy.ACCESSIBILITY_ID",
+      "selector": "明細",
+      "note": ""
+    },
+    {
+      "name": "交易選項",
+      "platform": "Android",
+      "strategy": "AppiumBy.ACCESSIBILITY_ID",
+      "selector": "交易",
+      "note": ""
+    },
+    {
+      "name": "更多選項",
+      "platform": "Android",
+      "strategy": "AppiumBy.ACCESSIBILITY_ID",
+      "selector": "更多",
+      "note": ""
+    }
+  ]
+}
+

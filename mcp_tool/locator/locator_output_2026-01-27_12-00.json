@@ -1,0 +1,126 @@
+{
+  "platforms": {
+    "iOS": {
+      "pages": {
+        "登入頁": [
+          {
+            "name": "企業戶ID輸入框",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "企業戶ID",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "value",
+                "text": ""
+              },
+              "actions": ["set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "使用者輸入框",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "使用者",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "value",
+                "text": ""
+              },
+              "actions": ["set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "密碼輸入框",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "密碼",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "value",
+                "text": ""
+              },
+              "actions": ["set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "登入按鈕",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "登入",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "label",
+                "text": "登入"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          }
+        ],
+        "總覽頁": [
+          {
+            "name": "快捷功能區塊",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "快捷功能",
+            "note": "",
+            "validation": {
+              "status": "FAIL",
+              "found_count": 0,
+              "is_visible": false,
+              "is_enabled": false,
+              "is_clickable": false,
+              "value": {
+                "source": "",
+                "text": ""
+              },
+              "actions": [],
+              "error": "元素未找到，符合測試預期不顯示"
+            }
+          },
+          {
+            "name": "處理清單區塊",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "處理清單",
+            "note": "",
+            "validation": {
+              "status": "FAIL",
+              "found_count": 0,
+              "is_visible": false,
+              "is_enabled": false,
+              "is_clickable": false,
+              "value": {
+                "source": "",
+                "text": ""
+              },
+              "actions": [],
+              "error": "元素未找到，符合測試預期不顯示"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
