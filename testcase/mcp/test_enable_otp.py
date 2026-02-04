@@ -4,7 +4,7 @@ from module.mobile.navigator import Navigator
 
 
 @pytest.mark.android
-@pytest.mark.gmb_test
+# @pytest.mark.gmb_test
 @allure.title("啟用企業行動密碼測試")
 def test_enable_otp():
     navigator = Navigator().android.zh

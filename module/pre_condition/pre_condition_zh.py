@@ -1,8 +1,7 @@
 import time
 
 import pytest
-
-from huskypo import logstack
+import logging
 
 from module.mobile.cube_util import CubeUtil
 from module.mobile.navigator import Navigator
@@ -28,7 +27,7 @@ class PreConditionZh:
                 self.navigator = Navigator().android.zh
             test_name = method.__name__
             if self.case_map.get(test_name, None) is None:
-                logstack.info(f"🕹️ skip_setup_method: {test_name}")
+                logging.info(f"🕹️ skip_setup_method: {test_name}")
                 return
             if self.system == "ios":
                 self.user = CubeUtil.ios_json_cube_user(self.case_map.get(test_name))
@@ -36,7 +35,7 @@ class PreConditionZh:
                 self.user = CubeUtil.android_json_cube_user(self.case_map.get(test_name))
             self.version = CubeUtil.get_env().get('version', None)
         except Exception as e:
-            logstack.error(f"Setup Fail: {e}")
+            logging.error(f"Setup Fail: {e}")
             # 僅記錄錯誤，不自動調用 teardown，避免測試流程混亂
 
     def teardown_method(self):

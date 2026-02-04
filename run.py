@@ -1,13 +1,13 @@
 import os
 import shutil
 import sys
+import logging
 from datetime import datetime
 
 import pytest
-from huskypo import logconfig
 
 from framework import cleaning, allure_generator
-from framework import path, common
+from framework import path, common,logconfig
 
 if __name__ == "__main__":
 
@@ -20,8 +20,8 @@ if __name__ == "__main__":
 
     # pytest.main()
     pytest.main([
-        '--platform','ios',
-        '-m','overview',
+        '--platform','android',
+        '-m','gmb_login',
         '--alluredir=./reports/allure_tmp'
     ])
     # pytest.main([

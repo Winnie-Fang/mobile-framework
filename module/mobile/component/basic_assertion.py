@@ -1,10 +1,8 @@
 import re, pytest
-from huskypo import logstack
 import pytest
 import re
 
-from huskypo import logstack
-
+import logging
 
 def __logic(test_object: str | int | float, logic: str, expect):
     try:
@@ -20,13 +18,13 @@ def __logic(test_object: str | int | float, logic: str, expect):
             '<': lambda v, e: v < e,
             '<=': lambda v, e: v <= e
         }
-        logstack.info(f'[Assert Action] Target ({test_object}) should {logic} ({expect}).')
+        logging.info(f'[Assert Action] Target ({test_object}) should {logic} ({expect}).')
         return operations[logic](test_object, expect)
     except KeyError:
-        logstack.info(f"❌ Invalid logic: {logic}")
+        logging.info(f"❌ Invalid logic: {logic}")
         return False
     except Exception as e:
-        logstack.error(f"❌ Error during logic operation: {e}")
+        logging.error(f"❌ Error during logic operation: {e}")
         return False
 
 
@@ -49,7 +47,7 @@ def logic(test_object: str | int | float | list, logic: str, expect):
 
 
 def __pattern(test_object: str, match_pattern):
-    logstack.info(f'[Assert Action] Target ({test_object}) should match ({match_pattern}).')
+    logging.info(f'[Assert Action] Target ({test_object}) should match ({match_pattern}).')
     return bool(re.match(match_pattern, test_object))
 
 

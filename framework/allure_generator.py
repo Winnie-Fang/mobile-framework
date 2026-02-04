@@ -4,7 +4,7 @@ import shutil
 import allure_combine
 from bs4 import BeautifulSoup as BS
 
-from huskypo import logstack
+import logging
 
 from framework import common, path
 
@@ -17,22 +17,22 @@ def output_allure_html():
     # xdist 變更時間戳與絕對路徑取得方式
     TIMESTAMP = common.read_txt_by(path.Base.TIMESTAMP_TXT)
     ALLURE = common.read_txt_by(path.Base.ALLURE_PATH_TXT)
-    logstack.info(f'🟢 ALLURE: {ALLURE}')
+    logging.info(f'🟢 ALLURE: {ALLURE}')
     
     # 整合 allure_tmp 為 allure_index 資料夾，其中包含 index.html 報告
     try:
         os.system(f'{ALLURE} generate {path.Reports.ALLURE_TMP} --clean -o {path.Reports.ALLURE_INDEX}')
-        logstack.info(f'✅ 成功: 已整合 tmp_dir 為新的 index_dir: {path.Reports.ALLURE_INDEX}')
+        logging.info(f'✅ 成功: 已整合 tmp_dir 為新的 index_dir: {path.Reports.ALLURE_INDEX}')
     except Exception as e:
-        logstack.error(f'❌ 失敗: 未整合 tmp_dir 為新的 index_dir: {path.Reports.ALLURE_INDEX}\n{e}')
+        logging.error(f'❌ 失敗: 未整合 tmp_dir 為新的 index_dir: {path.Reports.ALLURE_INDEX}\n{e}')
 
     # 整合 allure_index 內的 index.html 並在其中生成獨立報告 complete.html
     try:
         allure_combine.combine_allure(path.Reports.ALLURE_INDEX)
-        logstack.info(f'✅ 成功: 已生成 complete.html 於 index_dir: {path.Reports.ALLURE_INDEX}')
+        logging.info(f'✅ 成功: 已生成 complete.html 於 index_dir: {path.Reports.ALLURE_INDEX}')
     except Exception as e:
-        logstack.error(f'❌ 失敗: 未生成 complete.html 於 index_dir: {path.Reports.ALLURE_INDEX}\n{e}')
-        logstack.warning(f'🟡 請確認 allure commandline 版本介於 2.21.0 和 2.22.0 之間')
+        logging.error(f'❌ 失敗: 未生成 complete.html 於 index_dir: {path.Reports.ALLURE_INDEX}\n{e}')
+        logging.warning(f'🟡 請確認 allure commandline 版本介於 2.21.0 和 2.22.0 之間')
 
     # 移動 complete.html 到附加時間戳的資料夾
     try:
@@ -48,18 +48,18 @@ def output_allure_html():
         src_image = path.Reports.IMAGE
         dst_image = os.path.join(REPORTS_TIMESTAMP, 'image')
         os.rename(src_image, dst_image)
-        logstack.info(f'✅ 成功: 已移動 complete.html 到資料夾: {path.REPORTS}')
-        logstack.info(f'✅ 成功: 已修改 complete.html 檔案名為: allure_{TIMESTAMP}.html')
+        logging.info(f'✅ 成功: 已移動 complete.html 到資料夾: {path.REPORTS}')
+        logging.info(f'✅ 成功: 已修改 complete.html 檔案名為: allure_{TIMESTAMP}.html')
     except Exception as e:
-        logstack.error('❌ 失敗: 請確認 最終report路徑 及 展開截圖的設定 是否有誤')
+        logging.error('❌ 失敗: 請確認 最終report路徑 及 展開截圖的設定 是否有誤')
 
     # 移除不需要的 allure 暫存檔和資料夾
     try:
         # 可都不用移除tmp，CI直接於 sysargs 使用 --clean-alluredir 即可。
         shutil.rmtree(path.Reports.ALLURE_INDEX, ignore_errors=True)
-        logstack.info(f'✅ 成功: 已移除 index_dir: {path.Reports.ALLURE_INDEX}')
+        logging.info(f'✅ 成功: 已移除 index_dir: {path.Reports.ALLURE_INDEX}')
     except Exception as e:
-        logstack.error(f'❌ 失敗: 移除 index_dir 時發生錯誤，請確認路徑是否正確')
+        logging.error(f'❌ 失敗: 移除 index_dir 時發生錯誤，請確認路徑是否正確')
 
 
 def expand_screenshot(file_path):

@@ -1,5 +1,4 @@
-from huskypo import logstack
-
+import logging
 
 class D:
     TWD = 'TWD'
@@ -61,10 +60,10 @@ class Dollar:
             frd = round(twd / fxr, 2)
             if frd.is_integer():
                 frd = int(frd)
-        logstack.info(f'frdeg: {frdeg}')
-        logstack.info(f'twd: {twd}, type: {type(twd)}')
-        logstack.info(f'fxr: {fxr}, type: {type(fxr)}')
-        logstack.info(f'frd: {frd}, type: {type(frd)}\n')
+        logging.info(f'frdeg: {frdeg}')
+        logging.info(f'twd: {twd}, type: {type(twd)}')
+        logging.info(f'fxr: {fxr}, type: {type(fxr)}')
+        logging.info(f'frd: {frd}, type: {type(frd)}\n')
         return frd
 
     def frd_to_twd(frd: int | float, fxr: int | float) -> int:
@@ -75,9 +74,9 @@ class Dollar:
         :param frd_eng: 外幣英文幣別
         """
         twd = round(frd * fxr)
-        logstack.info(f'frd: {frd}, type: {type(frd)}')
-        logstack.info(f'fxr: {fxr}, type: {type(fxr)}')
-        logstack.info(f'twd: {twd}, type: {type(twd)}\n')
+        logging.info(f'frd: {frd}, type: {type(frd)}')
+        logging.info(f'fxr: {fxr}, type: {type(fxr)}')
+        logging.info(f'twd: {twd}, type: {type(twd)}\n')
         return twd
 
     def frd_to_frd(src: int | float, fxr: int | float, dsteg: str) -> int | float:
@@ -90,8 +89,8 @@ class Dollar:
             dst = round(src * fxr, 2)
             if dst.is_integer():
                 dst = int(dst)
-        logstack.info(f'frdeg: {dsteg}')
-        logstack.info(f'src: {src}, type: {type(src)}')
-        logstack.info(f'fxr: {fxr}, type: {type(fxr)}')
-        logstack.info(f'frd: {dst}, type: {type(dst)}\n')
+        logging.info(f'frdeg: {dsteg}')
+        logging.info(f'src: {src}, type: {type(src)}')
+        logging.info(f'fxr: {fxr}, type: {type(fxr)}')
+        logging.info(f'frd: {dst}, type: {type(dst)}\n')
         return dst

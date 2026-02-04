@@ -1,8 +1,7 @@
 import re
 from datetime import datetime, date
 
-from huskypo import logstack
-
+import logging
 from module.mobile.dollar import D
 
 
@@ -12,11 +11,11 @@ def amt_to_grp(amt: str) -> str:
     """
     try:
         grp = amt.replace('$', '').replace(' ', '')
-        logstack.info(f'amount: "{amt}"')
-        logstack.info(f'amount to GROUPING: "{grp}"\n')
+        logging.info(f'amount: "{amt}"')
+        logging.info(f'amount to GROUPING: "{grp}"\n')
         return grp
     except BaseException:
-        logstack.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
+        logging.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
 
 
 def amt_to_num(amt: str, log: bool = True) -> int | float:
@@ -27,11 +26,11 @@ def amt_to_num(amt: str, log: bool = True) -> int | float:
         digit = amt.replace('$', '').replace(',', '').replace(' ', '')
         num = float(digit) if '.' in digit else int(digit)
         if log:
-            logstack.info(f'amount: "{amt}", digit: "{digit}"')
-            logstack.info(f'amount to NUMERIC: {num}, type: {type(num)}\n')
+            logging.info(f'amount: "{amt}", digit: "{digit}"')
+            logging.info(f'amount to NUMERIC: {num}, type: {type(num)}\n')
         return num
     except BaseException:
-        logstack.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
+        logging.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
 
 
 def amt_to_ams(amt: str) -> str:
@@ -43,7 +42,7 @@ def amt_to_ams(amt: str) -> str:
             return amt[:2] + ' ' + amt[2:]
         return amt[:1] + ' ' + amt[1:]
     except BaseException:
-        logstack.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
+        logging.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
 
 
 def amt_to_dlr(amount: str, dollar: str = D.TWD, space: bool = True) -> str:
@@ -54,11 +53,11 @@ def amt_to_dlr(amount: str, dollar: str = D.TWD, space: bool = True) -> str:
         grouping = amount.replace('$', '').replace(' ', '')
         space = ' ' if space else ''
         dollar_grouping = dollar + space + grouping
-        logstack.info(f'amount: "{amount}"')
-        logstack.info(f'result: "{dollar_grouping}"\n')
+        logging.info(f'amount: "{amount}"')
+        logging.info(f'result: "{dollar_grouping}"\n')
         return dollar_grouping
     except BaseException:
-        logstack.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
+        logging.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
 
 
 def grp_to_amt(grp: str, ams=False, pos=False) -> str:
@@ -73,7 +72,7 @@ def grp_to_amt(grp: str, ams=False, pos=False) -> str:
         pos_sign = '+' if pos else ''
         return pos_sign + amt_sign + pure_grp
     except BaseException:
-        logstack.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
+        logging.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
 
 
 def grp_to_num(grp: str) -> int | float:
@@ -83,11 +82,11 @@ def grp_to_num(grp: str) -> int | float:
     try:
         digit = grp.replace(',', '').replace(' ', '')
         num = float(digit) if '.' in digit else int(digit)
-        logstack.info(f'grouping: "{grp}", digit: "{digit}"')
-        logstack.info(f'grouping to NUMERIC: {num}, type: {type(num)}\n')
+        logging.info(f'grouping: "{grp}", digit: "{digit}"')
+        logging.info(f'grouping to NUMERIC: {num}, type: {type(num)}\n')
         return num
     except BaseException:
-        logstack.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
+        logging.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
 
 
 def num_to_amt(num: int | float, ams=False, fmt_2f=False, pos=False) -> str:
@@ -102,7 +101,7 @@ def num_to_amt(num: int | float, ams=False, fmt_2f=False, pos=False) -> str:
         pos_sign = '+' if pos else ''
         return pos_sign + amt_sign + grp
     except BaseException:
-        logstack.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
+        logging.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
 
 
 def num_to_grp(num: int | float, fmt_2f=False, pos=False, trailing_zeros=True) -> str:
@@ -129,14 +128,14 @@ def num_to_grp(num: int | float, fmt_2f=False, pos=False, trailing_zeros=True) -
         pos_sign = '+' if pos else ''
         return pos_sign + grp
     except BaseException:
-        logstack.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
+        logging.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
 
 
 def num_to_pct(num: int | float, digit: int = 2, rb: bool = False, np: bool = False, pct_2f: bool = False):
     """
     將比值轉換為百分比
     """
-    logstack.info(f'num    : {num}')
+    logging.info(f'num    : {num}')
     rb_left = '(' if rb else ''
     rb_right = ')' if rb else ''
     np_sign = ''
@@ -149,7 +148,7 @@ def num_to_pct(num: int | float, digit: int = 2, rb: bool = False, np: bool = Fa
         result = f'{rb_left}{np_sign}{num}%{rb_right}'
     else:
         result = f'{rb_left}{np_sign}{num}%{rb_right}'
-    logstack.info(f'result : {result}')
+    logging.info(f'result : {result}')
     return result
 
 
@@ -189,7 +188,7 @@ def remove_zeros(value: str):
             value = value.rstrip('0').rstrip('.')
         return value
     except BaseException:
-        logstack.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
+        logging.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
 
 
 def remove_rb(value: str):
@@ -199,7 +198,7 @@ def remove_rb(value: str):
     try:
         return value.replace(' ', '').replace('(', '').replace(')', '')
     except BaseException:
-        logstack.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
+        logging.error(f'❌ 發生轉換錯誤 請先確認參數設定是否有誤')
 
 
 def string_to_percent(string: str) -> str:
@@ -207,9 +206,9 @@ def string_to_percent(string: str) -> str:
     cube中將有百分比外的字元過濾
     例如: '(-48.24%)' -> '-48.24%'
     """
-    logstack.info(f'int: {string}')
+    logging.info(f'int: {string}')
     result = re.sub("[^0-9%.-]", "", string)
-    logstack.info(f'string to percent result: {result}')
+    logging.info(f'string to percent result: {result}')
     return result
 
 
@@ -218,9 +217,9 @@ def string_to_float(string: str) -> float:
     cube中將有float外的字元過濾
     例如: '(-48.24%)' -> '-48.24'
     """
-    logstack.info(f'int: {string}')
+    logging.info(f'int: {string}')
     result = float(re.sub("[^0-9.+-]", "", string))
-    logstack.info(f'string to float result: {result}')
+    logging.info(f'string to float result: {result}')
     return result
 
 
@@ -242,7 +241,7 @@ def string_to_datetime(date_string: str, language=0):
     0=>中文： %Y年%m月%d日 %H:%M:%S
     1=>英文： %Y/%m/%d %H:%M:%S
     """
-    logstack.info(f'時間字串: {date_string}')
+    logging.info(f'時間字串: {date_string}')
 
     if language == 0:
         date_format = "%Y年%m月%d日 %H:%M:%S"
@@ -260,7 +259,7 @@ def string_to_date(date_string: str, format=0) -> str | date:
     1: 2023-06-20 (return date)
     """
     # ToDo:之後和datetime_utility合併
-    logstack.info(f'字串: {date_string}')
+    logging.info(f'字串: {date_string}')
 
     # 正規表示法模式
     pattern = r"(\d{4}/\d{2}/\d{2})"

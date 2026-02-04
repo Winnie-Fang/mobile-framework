@@ -2,8 +2,7 @@ import time
 
 import pytest
 
-from huskypo import logstack
-
+import logging
 from module.mobile.cube_util import CubeUtil
 from module.mobile.navigator import Navigator
 from module.mobile.device_manager import DeviceManager
@@ -21,13 +20,13 @@ class PreConditionIosZh:
             # self.navigator.cube.prelogin_process()
             test_name = method.__name__
             if self.case_map.get(test_name, None) is None:
-                logstack.info("🕹️ skip_setup_method")
+                logging.info("🕹️ skip_setup_method")
                 return
             self.user = CubeUtil.ios_json_cube_user(self.case_map.get(test_name))
             self.version = CubeUtil.get_env()['version']
             # self.navigator.cube.login(self.user)
         except Exception as e:
-            logstack.error(f"Setup Fail: {e}")
+            logging.error(f"Setup Fail: {e}")
             self.teardown_method()
 
     def teardown_method(self):

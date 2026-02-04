@@ -1,8 +1,7 @@
 import inspect
 
 import pytest
-from huskypo import logstack
-
+import logging
 from module.mobile.component.base_object import BaseObject
 from module.mobile.component.basic_string import BasicString
 
@@ -19,7 +18,7 @@ class BasicButton(BaseObject):
 
     def click(self) -> None:
         self.ready()
-        logstack.info(f"{self.remark()} > 點擊")
+        logging.info(f"{self.remark()} > 點擊")
         self.matcher().click()
 
     @property

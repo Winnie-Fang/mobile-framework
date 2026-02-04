@@ -10,7 +10,7 @@ import pandas as pd
 import yaml
 
 from framework import datetime_utility as dt
-from huskypo import logstack
+import logging
 
 # string 彙整
 WHITESPACE = string.whitespace
@@ -121,7 +121,7 @@ def generate_adult_year():
     """
     datetime_now = dt.datetime_now()
     adult_year = str(int(dt.datetime_attr(datetime_now, 'year')) - 21)
-    logstack.info(f'generate_adult_year: {adult_year}')
+    logging.info(f'generate_adult_year: {adult_year}')
     return adult_year
 
 
@@ -165,10 +165,10 @@ def generate_account_id(visible_digital: int = 16, acture_digital: int = 12) -> 
             digital_end = '9' + '9' * (acture_digital - 1)
             return str(random.randint(int(digital_start), int(digital_end))).zfill(visible_digital)
         else:
-            logstack.info('參數錯誤')
+            logging.info('參數錯誤')
 
     else:
-        logstack.info('參數錯誤')
+        logging.info('參數錯誤')
 
 
 def generate_landline_phone(zone=False):
@@ -317,7 +317,7 @@ def json_file_to_dict(file_path: str, key=None, value=None) -> dict:
                 data = json.loads(file.read())
             return data
     except FileNotFoundError as err:
-        logstack.error(f"Cannot find json file: {file_path}")
+        logging.error(f"Cannot find json file: {file_path}")
 
 
 def get_files(folder_path: str) -> list:
@@ -331,7 +331,7 @@ def get_files(folder_path: str) -> list:
             files.extend(file_names)
         return files
     except FileNotFoundError as err:
-        logstack.error(f"Cannot find folder: {folder_path}")
+        logging.error(f"Cannot find folder: {folder_path}")
 
 
 def rand_num(start, end):

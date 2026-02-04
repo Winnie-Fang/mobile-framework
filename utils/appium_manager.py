@@ -1,7 +1,8 @@
 import subprocess
 import time
 
-from huskypo import logstack
+import logging
+
 import requests
 
 
@@ -22,11 +23,11 @@ class AppiumManager:
     def start(self):
         """啟動 Appium server"""
         if self.process is not None and self.is_running():
-            logstack.info(f"🔁 Appium Server 已經在 port {self.port} 運行中")
+            logging.info(f"🔁 Appium Server 已經在 port {self.port} 運行中")
             return
 
         try:
-            logstack.info(f"🚀 嘗試啟動 Appium Server（port {self.port}）...")
+            logging.info(f"🚀 嘗試啟動 Appium Server（port {self.port}）...")
             self.process = subprocess.Popen(
                 ["appium", "-p", str(self.port)],
                 stdout=subprocess.PIPE,
@@ -39,34 +40,34 @@ class AppiumManager:
             for i in range(10):
                 if self.is_running():
                     print(f"✅ Appium Server 已啟動在 port {self.port}")
-                    logstack.info(f"✅ Appium Server 已啟動在 port {self.port}")
+                    logging.info(f"✅ Appium Server 已啟動在 port {self.port}")
                     return
                 time.sleep(1)
 
             raise RuntimeError(f"❌ Appium Server 在 port {self.port} 啟動失敗")
 
         except subprocess.CalledProcessError as e:
-            logstack.error(f"🚨 啟動 Appium Server 發生 subprocess 錯誤: {e}")
+            logging.error(f"🚨 啟動 Appium Server 發生 subprocess 錯誤: {e}")
             raise
         except Exception as e:
-            logstack.error(f"🚨 Appium Server 啟動錯誤: {e}")
+            logging.error(f"🚨 Appium Server 啟動錯誤: {e}")
             raise
 
     def stop(self):
         """關閉 Appium server"""
         if self.process:
-            logstack.info(f"🛑 正在關閉 Appium Server（port {self.port}）...")
+            logging.info(f"🛑 正在關閉 Appium Server（port {self.port}）...")
             self.process.terminate()
             self.process.wait()
             self.process = None
             print("✅ Appium Server 已關閉")
-            logstack.info("✅ Appium Server 已關閉")
+            logging.info("✅ Appium Server 已關閉")
         else:
-            logstack.warning("⚠️ Appium Server 尚未啟動")
+            logging.warning("⚠️ Appium Server 尚未啟動")
 
     def restart(self):
         """重新啟動 Appium server"""
-        logstack.info("🔄 重新啟動 Appium Server")
+        logging.info("🔄 重新啟動 Appium Server")
         self.stop()
         time.sleep(2)
         self.start()

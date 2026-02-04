@@ -1,5 +1,5 @@
 import pytest
-from huskypo import logstack
+import logging
 
 from module.mobile.component.base_object import BaseObject
 from module.mobile.component.basic_string import BasicString
@@ -16,17 +16,17 @@ class BasicWebTextField(BaseObject):
         self.assert_visible(False)
 
     def clear(self):
-        logstack.info(f"{self.remark()} > clear")
+        logging.info(f"{self.remark()} > clear")
         self.ready()
         self.matcher().clear()
 
     def input(self, text):
-        logstack.info(f"{self.remark()} > input({text}) ")
+        logging.info(f"{self.remark()} > input({text}) ")
         self.ready()
         self.matcher().send_keys(text)
 
     def getValue(self):
-        logstack.info(f"{self.remark()} > getValue('{self.matcher().get_attribute('value')}')")
+        logging.info(f"{self.remark()} > getValue('{self.matcher().get_attribute('value')}')")
         self.ready()
         return self.matcher().get_attribute("value")
 
@@ -37,7 +37,7 @@ class BasicWebTextField(BaseObject):
         )
 
     def click(self):
-        logstack.info(f"{self.remark()} > tap")
+        logging.info(f"{self.remark()} > tap")
         self.ready()
         self.matcher().click()
 

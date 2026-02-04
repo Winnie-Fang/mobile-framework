@@ -2,7 +2,7 @@ import inspect
 import re
 
 import pytest
-from huskypo import logstack
+import logging
 
 from framework import datetime_utility as dt
 from module.mobile.component.base_object import BaseObject
@@ -56,7 +56,7 @@ class BasicString(BaseObject):
     """
 
     def is_equals(self, expecting) -> bool:
-        logstack.info(f"{self.matcher()}")
+        logging.info(f"{self.matcher()}")
         return self.matcher() == expecting
 
     def assert_equals(self, expecting) -> None:
@@ -95,7 +95,7 @@ class BasicString(BaseObject):
     """
 
     def is_greater_or_equals(self, expecting) -> bool:
-        logstack.info(f" {self.remark()} > isGreaterOrEquals({expecting})")
+        logging.info(f" {self.remark()} > isGreaterOrEquals({expecting})")
         return self.matcher() >= expecting
 
     def assert_greater_or_equals(self, expecting) -> None:
@@ -116,19 +116,19 @@ class BasicString(BaseObject):
     """
 
     def is_contain(self, msg):
-        logstack.info(f" {self.remark()} > Contain ({msg})")
+        logging.info(f" {self.remark()} > Contain ({msg})")
         return msg in self.matcher()
 
     def is_not_contain(self, msg):
-        logstack.info(f" {self.remark()} > Not Contain ({msg})")
+        logging.info(f" {self.remark()} > Not Contain ({msg})")
         return msg not in self.matcher()
 
     def is_in(self, msg):
-        logstack.info(f" {self.remark()} > In ({msg})")
+        logging.info(f" {self.remark()} > In ({msg})")
         return self.matcher() in msg
 
     def is_not_in(self, msg):
-        logstack.info(f" {self.remark()} > Not In ({msg})")
+        logging.info(f" {self.remark()} > Not In ({msg})")
         return self.matcher() not in msg
 
     def assert_in(self, msg) -> None:
@@ -226,11 +226,11 @@ class BasicString(BaseObject):
     """
 
     def is_match_pattern(self, pattern):
-        logstack.info(f" {self.remark()} > Match ({pattern})")
+        logging.info(f" {self.remark()} > Match ({pattern})")
         return bool(re.match(pattern, self.matcher()))
 
     def is_time_match_now(self, buffer_minutes):
-        logstack.info(f" {self.remark()} > is time:{self.matcher()} match now")
+        logging.info(f" {self.remark()} > is time:{self.matcher()} match now")
         return bool(dt.is_time_match_now_within_buffer(self.matcher(), buffer_minutes))
 
     def assert_pattern(self, pattern):

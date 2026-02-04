@@ -2,7 +2,7 @@ import logging
 import os
 import time
 
-from huskypo import logstack
+import logging
 
 from framework import common, path
 from module.mobile.device_manager import DeviceManager
@@ -13,7 +13,7 @@ class CubeUtil:
 
     @staticmethod
     def tap(positions, remark: str = "", duration=None):
-        logstack.info(remark)
+        logging.info(remark)
         DeviceManager.get_driver().tap(
             positions=positions,
             duration=duration
@@ -120,21 +120,21 @@ class CubeUtil:
     @staticmethod
     def sleep(seconds, info="") -> None:
         for number in range(1, seconds + 1):
-            logstack.info(f"Sleep second({number})/{seconds}s, {info}")
+            logging.info(f"Sleep second({number})/{seconds}s, {info}")
             time.sleep(1)
 
     @staticmethod
     def retry_sleep(seconds: float, current_retry: int, total_retry: int, info="") -> None:
         if seconds % 1 == 0:  # 如果是整數
             for number in range(1, int(seconds) + 1):
-                logstack.info(f"⏳ Retry {current_retry}/{total_retry} ({number}s / {int(seconds)}s) {info}")
+                logging.info(f"⏳ Retry {current_retry}/{total_retry} ({number}s / {int(seconds)}s) {info}")
                 time.sleep(1)
         else:
             interval = 0.1  # 設定每次的間隔為 0.1 秒
             total_attempts = int(seconds / interval)  # 計算總共的嘗試次數
             for attempt in range(total_attempts):
                 current_cumulative_wait_time = (attempt + 1) * interval  # 目前累積等待時間
-                logstack.info(
+                logging.info(
                     f"⏳ Retry {current_retry}/{total_retry} ({current_cumulative_wait_time:.1f}s / {seconds:.1f}s) {info}")  # 格式化輸出
                 time.sleep(interval)  # 每次間隔 0.1 秒
 
@@ -173,7 +173,7 @@ class CubeUtil:
 
     @staticmethod
     def reload_page():
-        logstack.info('🕹️ Drag down to reload current page.')
+        logging.info('🕹️ Drag down to reload current page.')
         area = DeviceManager.get_driver().get_window_size()
         start_x = area['width'] / 2
         start_y = area['height'] * 0.35

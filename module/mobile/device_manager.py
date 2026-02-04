@@ -8,8 +8,7 @@ import json
 
 from appium import webdriver
 from appium.options.common import AppiumOptions
-from huskypo import Appium, Log, logstack
-from huskypo.logstack import exception
+import logging
 
 # from module.ios.native_appid import IOS_CUBE
 from module.mobile.globalvar import GlobalVar
@@ -21,10 +20,10 @@ import os
 
 class DeviceManager:
     STATIC_IOS_DRIVER = None
-    Log.PRINT = True
-    Log.RECORD = True
     KEEP_APP_STATE = True
     STATIC_DRIVER = None
+    LOCALHOST = 'http://127.0.0.1'
+    PORT_4723 = ':4723'
 
     DEVICES_CONF: Optional[dict] = None  # 讀進來的 JSON
     DRIVERS: Dict[str, Any] = {}  # role -> driver
@@ -76,7 +75,7 @@ class DeviceManager:
             print(f"Error clearing UIAutomator2 server data: {e}")
             raise
         except Exception as e:
-            logstack.error(f"Unexpected error: {e}")
+            logging.error(f"Unexpected error: {e}")
             raise
 
     @classmethod
@@ -96,7 +95,7 @@ class DeviceManager:
         返回:
         str: Android 設備的序列號
         """
-        logstack.info(cls.adb_executor(['adb', 'get-serialno']).stdout.strip())
+        logging.info(cls.adb_executor(['adb', 'get-serialno']).stdout.strip())
         return cls.adb_executor(['adb', 'get-serialno']).stdout.strip()
 
     @classmethod
@@ -149,12 +148,12 @@ class DeviceManager:
             if adb_command.returncode == 0:
                 device_lines = adb_command.stdout.strip().splitlines()[1:]
                 devices = [line.split()[0] for line in device_lines if "device" in line]
-                # logstack.info(f'Devices: {devices}')
+                # logging.info(f'Devices: {devices}')
                 return devices[0]
 
-            logstack.info(f"命令執行失敗，錯誤訊息: {adb_command.stderr}")
+            logging.info(f"命令執行失敗，錯誤訊息: {adb_command.stderr}")
         except Exception as e:
-            logstack.info(f"發生錯誤: {e}")
+            logging.info(f"發生錯誤: {e}")
 
     @classmethod
     def get_uuid(cls) -> str:
@@ -173,12 +172,12 @@ class DeviceManager:
         try:
             if adb_command.returncode == 0:
                 udid = adb_command.stdout.strip()
-                logstack.info(f'iPhone UDID: {udid}')
+                logging.info(f'iPhone UDID: {udid}')
                 return udid
 
-            logstack.info(f"命令執行失敗，錯誤訊息: {adb_command.stderr}")
+            logging.info(f"命令執行失敗，錯誤訊息: {adb_command.stderr}")
         except Exception as e:
-            logstack.info(f"發生錯誤: {e}")
+            logging.info(f"發生錯誤: {e}")
 
     @classmethod
     def get_booted_simulator_udid(cls):
@@ -197,14 +196,14 @@ class DeviceManager:
             booted_match = re.search(r'\(([\dA-F-]+)\) \(Booted\)', result.stdout)
 
             if booted_match:
-                logstack.info(booted_match.group(1))
+                logging.info(booted_match.group(1))
                 return booted_match.group(1)
             else:
-                logstack.info("沒有 Booted 設備")
+                logging.info("沒有 Booted 設備")
                 return None
 
         except Exception as e:
-            logstack.info(f"Error: {e}")
+            logging.info(f"Error: {e}")
             return None
 
     @classmethod
@@ -230,10 +229,10 @@ class DeviceManager:
                     ["adb", "-s", cls.get_android_devices(), "shell", "pm", "uninstall", package]
                 )
                 if adb_command.returncode == 0 and cls.is_package_exists(package):
-                    logstack.info(f"adb -s {cls.get_android_devices()} shell pm uninstall {package}")
-                    logstack.info(f"Successfully uninstalled {package}")
+                    logging.info(f"adb -s {cls.get_android_devices()} shell pm uninstall {package}")
+                    logging.info(f"Successfully uninstalled {package}")
             except subprocess.CalledProcessError as e:
-                logstack.warning(f"Failed to uninstall {package}: {e}")
+                logging.warning(f"Failed to uninstall {package}: {e}")
 
     @classmethod
     def get_driver(cls, role: Optional[str] = None):
@@ -252,7 +251,7 @@ class DeviceManager:
 
             device = cls.DEVICES_CONF["devices"][role]
             platform = device["platform"].lower()
-            server_url = Appium.LOCALHOST+ ":"
+            server_url = cls.LOCALHOST+ ":"
 
             if platform == "android":
                 driver = cls._create_android_from_device(device, server_url)
@@ -348,8 +347,8 @@ class DeviceManager:
         options.set_capability('autoGrantPermissions', True)
         options.set_capability('enableMultiWindows', True)
         options.set_capability('appPackage', 'com.cathaybk.geb.cubuat')
-        options.set_capability('appActivity', 'com.cathaybk.geb.feature.BootActivity')
-        # options.set_capability('appActivity', 'com.cathaybk.geb.cubuat.MainActivity')
+        # options.set_capability('appActivity', 'com.cathaybk.geb.feature.BootActivity')
+        options.set_capability('appActivity', 'com.cathaybk.geb.cubuat.MainActivity')
         options.set_capability('appWaitActivity', "com.cathaybk.geb.feature.login.LoginActivity")
         options.set_capability('noReset', cls.KEEP_APP_STATE)
         options.set_capability('shouldTerminateApp', True)
@@ -362,12 +361,12 @@ class DeviceManager:
 
         if cls.is_debug_mode():
             options.set_capability('newCommandTimeout', 1800)  # 1800 秒
-            logstack.info(f"Debug模式:newCommandTimeout設為 1800 秒")
+            logging.info(f"Debug模式:newCommandTimeout設為 1800 秒")
         else:
             options.set_capability('newCommandTimeout', 100)  # 默認為 100 秒
-            logstack.info(f"非Debug模式:newCommandTimeout設為 100 秒")
+            logging.info(f"非Debug模式:newCommandTimeout設為 100 秒")
 
-        driver = webdriver.Remote(Appium.LOCALHOST + ':4723', options=options)
+        driver = webdriver.Remote(cls.LOCALHOST + ':4723', options=options)
         return driver
 
     @classmethod
@@ -395,7 +394,7 @@ class DeviceManager:
         options.set_capability('xcodeOrgId', 'cathaytqa')
         # options.set_capability('app', "/Users/twinb00551192/Desktop/QA_file/app-artifact.ipa")
         # options.set_capability('app', PATH)
-        driver = webdriver.Remote(Appium.LOCALHOST + Appium.PORT_4723, options=options)
+        driver = webdriver.Remote(cls.LOCALHOST + cls.PORT_4723, options=options)
         return driver
 
     @classmethod
@@ -426,7 +425,7 @@ class DeviceManager:
         # options.set_capability('mjpegServerPort', 9100)
         # options.set_capability('app',PATH)
         # options.set_capability('app','/Users/twinb00551192/Desktop/GMB/UAT_GlobalMyB2B.app')
-        driver = webdriver.Remote(Appium.LOCALHOST + Appium.PORT_4723, options=options)
+        driver = webdriver.Remote(cls.LOCALHOST + cls.PORT_4723, options=options)
         return driver
 
     @classmethod

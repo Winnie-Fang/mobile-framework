@@ -1,4 +1,4 @@
-from huskypo import logstack
+import logging
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.actions import interaction
@@ -141,14 +141,14 @@ class SlidingObject(BaseObject):
         if not self.is_matcher(matcher):
             self.scroll_to_top()
         else:
-            logstack.info("[Swipe Action] Element is present.")
+            logging.info("[Swipe Action] Element is present.")
             self._start_adjusting_up(matcher)
             return
 
         for count in range(1, max_swipes + 1):
             try:
                 if matcher().is_displayed():
-                    logstack.info("[Swipe Action] Element is present.")
+                    logging.info("[Swipe Action] Element is present.")
                     self._start_adjusting_up(matcher)
                     return
             except NoSuchElementException:
@@ -156,7 +156,7 @@ class SlidingObject(BaseObject):
 
             # 使用滑动
             self.scroll_up() if scroll_up else self.scroll_down()
-            logstack.info(f"[Swipe Action] Sliding times while finding element ({count}/{max_swipes})")
+            logging.info(f"[Swipe Action] Sliding times while finding element ({count}/{max_swipes})")
 
         raise Exception("❌ Cannot find element and reach max sliding times.")
 
@@ -165,14 +165,14 @@ class SlidingObject(BaseObject):
         if not self.is_matcher(matcher):
             self.scroll_to_left()
         else:
-            logstack.info("[Swipe Action] Element is present.")
+            logging.info("[Swipe Action] Element is present.")
             self._start_adjusting_up_horizontal(matcher)
             return
 
         for count in range(1, max_swipes + 1):
             try:
                 if matcher().is_displayed():
-                    logstack.info("[Swipe Action] Element is present.")
+                    logging.info("[Swipe Action] Element is present.")
                     self._start_adjusting_up_horizontal(matcher)
                     return
             except NoSuchElementException:
@@ -180,7 +180,7 @@ class SlidingObject(BaseObject):
 
             # 使用滑动
             self.scroll_left() if scroll_left else self.scroll_right()
-            logstack.info(f"[Swipe Action] Sliding times while finding element ({count}/{max_swipes})")
+            logging.info(f"[Swipe Action] Sliding times while finding element ({count}/{max_swipes})")
 
         raise Exception("❌ Cannot find element and reach max sliding times.")
 
@@ -256,7 +256,7 @@ class SlidingObject(BaseObject):
         if GlobalVar.PLATFORM == 'ios':
             if distance_from_top > 20 and distance_from_bottom < 0:
                 for adjust_times in range(1, max_adjust + 1):
-                    logstack.info(f'[Swipe Action] Start adjusting ({adjust_times}/{max_adjust})')
+                    logging.info(f'[Swipe Action] Start adjusting ({adjust_times}/{max_adjust})')
                     start_x = end_x = window_size['width'] * 0.5
                     start_y = viewable_area['bottom_side']
 
@@ -268,9 +268,9 @@ class SlidingObject(BaseObject):
                         matcher().location['y'] + matcher().size['height'])
                     if distance_from_top < 20 or distance_from_bottom > 0:
                         break
-                logstack.info('[Swipe Action] End adjusting.')
+                logging.info('[Swipe Action] End adjusting.')
             else:
-                logstack.info('[Swipe Action] No need adjusting.')
+                logging.info('[Swipe Action] No need adjusting.')
 
         else:
             if distance_from_top < 40 or distance_from_bottom < -40:
@@ -287,9 +287,9 @@ class SlidingObject(BaseObject):
                     # 避免 execute_scroll 滑動的distance_from_bottom太小，視為tap element
                     if distance_from_top > 40 and distance_from_bottom > -40:
                         break
-                logstack.info('[Swipe Action] End adjusting.')
+                logging.info('[Swipe Action] End adjusting.')
             else:
-                logstack.info('[Swipe Action] No need adjusting.')
+                logging.info('[Swipe Action] No need adjusting.')
 
     def _start_adjusting_up_horizontal(self, matcher, max_adjust: int = 3, max_adjust_android: int = 6):
         """
@@ -317,7 +317,7 @@ class SlidingObject(BaseObject):
         if GlobalVar.PLATFORM == 'ios':
             if distance_from_left > 20 and distance_from_right < 0:
                 for adjust_times in range(1, max_adjust + 1):
-                    logstack.info(f'Start adjusting ({adjust_times}/{max_adjust})')
+                    logging.info(f'Start adjusting ({adjust_times}/{max_adjust})')
                     start_y = end_y = window_size['height'] * 0.5
                     start_x = viewable_area['right_side']
 
@@ -329,15 +329,15 @@ class SlidingObject(BaseObject):
                         matcher().location['x'] + matcher().size['width'])
                     if distance_from_left < 20 or distance_from_right > 0:
                         break
-                logstack.info('End adjusting.')
+                logging.info('End adjusting.')
             else:
-                logstack.info('No need adjusting.')
+                logging.info('No need adjusting.')
 
         else:
             if distance_from_left < 40 or distance_from_right < -40:
                 for adjust_times in range(1, max_adjust_android + 1):
-                    # logstack.info(f'開始調整 ({adjust_times}/{max_adjust_android})')
-                    # logstack.info(f'distance_from_top: {distance_from_top}, distance_from_bottom：{distance_from_bottom}')
+                    # logging.info(f'開始調整 ({adjust_times}/{max_adjust_android})')
+                    # logging.info(f'distance_from_top: {distance_from_top}, distance_from_bottom：{distance_from_bottom}')
                     start_y = end_y = window_size['height'] * 0.5
                     start_x = viewable_area['right_side']
 
@@ -350,6 +350,6 @@ class SlidingObject(BaseObject):
                     # 避免 execute_scroll 滑動的distance_from_bottom太小，視為tap element
                     if distance_from_left > 40 and distance_from_right > -40:
                         break
-                logstack.info('End adjusting.')
+                logging.info('End adjusting.')
             else:
-                logstack.info('No need adjusting.')
+                logging.info('No need adjusting.')

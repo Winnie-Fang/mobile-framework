@@ -1,4 +1,5 @@
-from huskypo import By, dynamic, logstack
+import logging
+from appium.webdriver.common.appiumby import AppiumBy
 
 from module.mobile.component.base_object import BaseObject
 from module.mobile.component.basic_component import BasicComponent
@@ -48,14 +49,14 @@ class Keyboard(BaseObject):
     @property
     def earth(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.ACCESSIBILITY_ID, '下一個鍵盤'),
+            lambda: self.driver.find_element(AppiumBy.ACCESSIBILITY_ID, '下一個鍵盤'),
             f"{self.remark()} > 下一個鍵盤"
         )
 
     @property
     def tool_bar(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN,
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN,
                                              '**/XCUIElementTypeToolbar[`label == "工具列" OR label =="Toolbar"`]'),
             f"{self.remark()} > 工具列"
         )
@@ -63,154 +64,154 @@ class Keyboard(BaseObject):
     @property
     def space(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name IN {"space", "空格"}`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name IN {"space", "空格"}`]'),
             f"{self.remark()} > 空格鍵"
         )
 
     @property
     def space_zh(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "空格"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "空格"`]'),
             f"{self.remark()} > 空格鍵 (中文)"
         )
 
     @property
     def space_en(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "space"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "space"`]'),
             f"{self.remark()} > 空格鍵 (英文)"
         )
 
     @property
     def a(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "a"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "a"`]'),
             f"{self.remark()} > 鍵盤字母 A"
         )
 
-    @dynamic
-    def alphabet(self, alphabet_: str = 'a'):
-        return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, f'**/XCUIElementTypeKey[`name == "{alphabet_}"`]'),
-            f"{self.remark()} > 鍵盤英文字母 {alphabet_}"
-        )
+    # @dynamic
+    # def alphabet(self, alphabet_: str = 'a'):
+    #     return BasicComponent(
+    #         lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, f'**/XCUIElementTypeKey[`name == "{alphabet_}"`]'),
+    #         f"{self.remark()} > 鍵盤英文字母 {alphabet_}"
+    #     )
 
     @property
     def done(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_PREDICATE, 'name IN {"Done", "完成"}'),
+            lambda: self.driver.find_element(AppiumBy.IOS_PREDICATE, 'name IN {"Done", "完成"}'),
             f"{self.remark()} > 完成按鍵"
         )
 
     @property
     def search(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.ACCESSIBILITY_ID, 'Search'),
+            lambda: self.driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Search'),
             f"{self.remark()} > 搜尋按鍵"
         )
 
     @property
     def one(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "1"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "1"`]'),
             f"{self.remark()} > 數字 1"
         )
 
     @property
     def two(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "2"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "2"`]'),
             f"{self.remark()} > 數字 2"
         )
 
     @property
     def three(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "3"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "3"`]'),
             f"{self.remark()} > 數字 3"
         )
 
     @property
     def four(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "4"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "4"`]'),
             f"{self.remark()} > 數字 4"
         )
 
     @property
     def five(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "5"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "5"`]'),
             f"{self.remark()} > 數字 5"
         )
 
     @property
     def six(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "6"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "6"`]'),
             f"{self.remark()} > 數字 6"
         )
 
     @property
     def seven(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "7"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "7"`]'),
             f"{self.remark()} > 數字 7"
         )
 
     @property
     def eight(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "8"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "8"`]'),
             f"{self.remark()} > 數字 8"
         )
 
     @property
     def nine(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "9"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "9"`]'),
             f"{self.remark()} > 數字 9"
         )
 
     @property
     def zero(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "0"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name == "0"`]'),
             f"{self.remark()} > 數字 0"
         )
 
     @property
     def delete(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name IN {"刪除", "delete"}`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeKey[`name IN {"刪除", "delete"}`]'),
             f"{self.remark()} > 刪除按鍵"
         )
 
-    @dynamic
-    def number(self, number_: str = '0'):
-        return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, f'**/XCUIElementTypeKey[`name == "{number_}"`]'),
-            f"{self.remark()} > 鍵盤數字 {number_}"
-        )
+    # @dynamic
+    # def number(self, number_: str = '0'):
+    #     return BasicComponent(
+    #         lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, f'**/XCUIElementTypeKey[`name == "{number_}"`]'),
+    #         f"{self.remark()} > 鍵盤數字 {number_}"
+    #     )
 
     @property
     def paste_button(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.IOS_CLASS_CHAIN, '**/XCUIElementTypeMenuItem[`label == "貼上"`]'),
+            lambda: self.driver.find_element(AppiumBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeMenuItem[`label == "貼上"`]'),
             f"{self.remark()} > 貼上按鈕"
         )
 
     @property
     def slide_bar(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.ACCESSIBILITY_ID, '主畫面指示符號'),
+            lambda: self.driver.find_element(AppiumBy.ACCESSIBILITY_ID, '主畫面指示符號'),
             f"{self.remark()} > 滑動橫條"
         )
 
     @property
     def number_btn(self):
         return BasicComponent(
-            lambda: self.driver.find_element(By.ACCESSIBILITY_ID, 'more'),
+            lambda: self.driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'more'),
             f"{self.remark()} > 數字鍵盤切換鍵"
         )
 
@@ -264,7 +265,7 @@ class Keyboard(BaseObject):
             end_y = area_y + int(area_height * end_y)
 
         offset = (start_x, start_y, end_x, end_y)
-        logstack._info(f'offset: {offset}')
+        logging._info(f'offset: {offset}')
         return offset
 
     def __get_area(self, area: Coordinate) -> tuple[int, int, int, int]:
@@ -279,7 +280,7 @@ class Keyboard(BaseObject):
             area_height = int(window_height * area_height)
 
         area = (area_x, area_y, area_width, area_height)
-        logstack._info(f'area: {area}')
+        logging._info(f'area: {area}')
         return area
 
     def __get_offset(
@@ -298,7 +299,7 @@ class Keyboard(BaseObject):
             end_y = area_y + int(area_height * end_y)
 
         offset = (start_x, start_y, end_x, end_y)
-        logstack._info(f'offset: {offset}')
+        logging._info(f'offset: {offset}')
         return offset
 
     def swipe_by(

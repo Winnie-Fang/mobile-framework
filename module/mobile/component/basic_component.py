@@ -2,7 +2,7 @@ import inspect
 from typing import TYPE_CHECKING
 
 import pytest
-from huskypo import logstack
+import logging
 from selenium.webdriver.support.select import Select
 
 from module.mobile.component.basic_string import BasicString
@@ -25,20 +25,20 @@ class BasicComponent(BaseObject):
         self.assert_visible(False)
 
     def send_keys(self, text) -> None:
-        logstack.info(f"{self.remark()} > 輸入({text}) ")
+        logging.info(f"{self.remark()} > 輸入({text}) ")
         self.ready()
         self.matcher().send_keys(text)
 
     def click(self) -> None:
         self.ready()
-        logstack.info(f"{self.remark()} > 點擊")
+        logging.info(f"{self.remark()} > 點擊")
         self.matcher().click()
 
     @property
     def get_coordinates_and_size(self) -> dict[str, int]:
         self.ready()
 
-        logstack.info(f"{self.remark()} > 回傳 x, y 座標和長寬")
+        logging.info(f"{self.remark()} > 回傳 x, y 座標和長寬")
         return {
             'x': self.matcher().location['x'],
             'y': self.matcher().location['y'],
@@ -52,7 +52,7 @@ class BasicComponent(BaseObject):
 
         x = self.matcher().location['x'] + self.matcher().size['width'] * 0.5
         y = self.matcher().location['y'] + self.matcher().size['height'] * 0.5
-        logstack.info(f"{self.remark()} > 回傳中心點位置")
+        logging.info(f"{self.remark()} > 回傳中心點位置")
         return {
             'x': int(x),
             'y': int(y)
@@ -60,18 +60,18 @@ class BasicComponent(BaseObject):
 
     def tap_center(self) -> None:
         self.ready()
-        logstack.info(f"{self.remark()} > 點擊中心點")
+        logging.info(f"{self.remark()} > 點擊中心點")
         x = self.get_center_coordinates['x']
         y = self.get_center_coordinates['y']
         CubeUtil.tap([(x, y)], f"{self.remark()} > 點擊中心點")
 
     def clear(self):
-        logstack.info(f"{self.remark()} > clear")
+        logging.info(f"{self.remark()} > clear")
         self.ready()
         self.matcher().clear()
 
     def input(self, text):
-        logstack.info(f"{self.remark()} > input({text}) ")
+        logging.info(f"{self.remark()} > input({text}) ")
         self.ready()
         self.matcher().send_keys(text)
 
@@ -83,7 +83,7 @@ class BasicComponent(BaseObject):
     @property
     def get_text(self):
         self.ready()
-        logstack.info(f'{self.remark()} > get string below: ')
+        logging.info(f'{self.remark()} > get string below: ')
         return BasicString(
             lambda: self.matcher().text,
             f'{self.remark()} > get string',
@@ -91,14 +91,14 @@ class BasicComponent(BaseObject):
 
     @property
     def value(self) -> str:
-        logstack.info(f"{self.remark()} > getValue ('{self.matcher().get_attribute('value')}')")
+        logging.info(f"{self.remark()} > getValue ('{self.matcher().get_attribute('value')}')")
         self.ready()
         return self.matcher().get_attribute("value")
 
     @property
     def get_value(self):
         self.ready()
-        logstack.info(f'{self.remark()} > get value below: ')
+        logging.info(f'{self.remark()} > get value below: ')
         return BasicString(
             lambda: self.matcher().get_attribute("value"),
             f"{self.remark()} > string ('{self.matcher().get_attribute('value')}')"
@@ -116,11 +116,11 @@ class BasicComponent(BaseObject):
         )
 
     def select(self, text):
-        logstack.info(f"{self.remark()} > select")
+        logging.info(f"{self.remark()} > select")
         Select(self.matcher()).select_by_visible_text(text)
 
     def deselectAll(self):
-        logstack.info(f"{self.remark()} > deselectAll")
+        logging.info(f"{self.remark()} > deselectAll")
         Select(self.matcher()).deselect_all()
 
     def is_visible(self) -> bool:
@@ -174,7 +174,7 @@ class BasicComponent(BaseObject):
         (待確認如何取得視窗寬度)
         """
         if self.matcher().size['width'] < 0.97 * CubeUtil.get_cube_window()['width']:
-            logstack.info('The progress bar at the top of webview has not finished loading.')
+            logging.info('The progress bar at the top of webview has not finished loading.')
             raise Exception(f"{self.remark()} > The progress bar at the top of webview has not finished loading. ")
 
     def is_selected(self) -> bool:

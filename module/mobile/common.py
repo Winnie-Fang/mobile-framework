@@ -1,4 +1,4 @@
-# from huskypo import logstack
+# from huskypo import logging
 # # from huskypo_extension import Page, assertion
 #
 #
@@ -47,12 +47,12 @@
 #         if isinstance(waits, list):
 #             if False in waits:
 #                 index_of_false = [index for index, value in enumerate(waits) if not value]
-#                 logstack.error(f'❌ 等待列表內 index {index_of_false} is False')
+#                 logging.error(f'❌ 等待列表內 index {index_of_false} is False')
 #                 waits = False
 #             elif waits == []:
-#                 logstack.error('❌ 等待列表為空list[]')
+#                 logging.error('❌ 等待列表為空list[]')
 #                 waits = False
 #             else:
 #                 waits = True
 #         if not assertion.condition(waits, log=False):
-#             logstack.error(f'❌ 截圖 "{name}" 等待條件不成立')
+#             logging.error(f'❌ 截圖 "{name}" 等待條件不成立')

@@ -1,5 +1,5 @@
 import pytest
-from huskypo import logstack
+import logging
 from selenium.webdriver.support.select import Select
 
 from module.mobile.component.base_object import BaseObject
@@ -13,11 +13,11 @@ class BasicWebSelect(BaseObject):
         self.matcher = matcher
 
     def select(self, text):
-        logstack.info(f"{self.remark()} > select")
+        logging.info(f"{self.remark()} > select")
         Select(self.matcher()).select_by_visible_text(text)
 
     def deselectAll(self):
-        logstack.info(f"{self.remark()} > deselectAll")
+        logging.info(f"{self.remark()} > deselectAll")
         Select(self.matcher()).deselect_all()
 
     def is_visible(self):

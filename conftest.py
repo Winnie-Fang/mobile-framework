@@ -6,7 +6,7 @@ from datetime import datetime
 import pytest
 from bson.json_util import default
 
-from huskypo import logstack
+import logging
 
 from framework import common, path, global_adapter
 from framework import global_adapter as ga
@@ -72,12 +72,12 @@ def pytest_configure(config):
 #     取得測試裝置資訊
 #     """
 #     iphones = pytestconfig.getoption('--iphones')
-#     logstack.info(f'🟢 iphones: {iphones}')
+#     logging.info(f'🟢 iphones: {iphones}')
 #     if not iphones:
 #         return None
 #     if 'default' in iphones:
 #         iphones = ['iphone 16 pro']
-#         logstack.info(f'🟢 default iphones: {iphones}')
+#         logging.info(f'🟢 default iphones: {iphones}')
 #     return [common.read_json_by(path.Data.JSON_IOS_CAP, iphone) for iphone in iphones]
 
 
@@ -88,12 +88,12 @@ def pytest_configure(config):
 #     """
 #     GlobalVar.PLATFORM = "ios"
 #     ipads = pytestconfig.getoption('--ipads')
-#     logstack.info(f'🟢 ipads: {ipads}')
+#     logging.info(f'🟢 ipads: {ipads}')
 #     if ipads is None:
 #         return None
 #     if 'default' in ipads:
 #         ipads = ['iPad mini (A17 Pro)']
-#         logstack.info(f'🟢 default ipads: {ipads}')
+#         logging.info(f'🟢 default ipads: {ipads}')
 #     return [common.read_json_by(path.Data.JSON_IOS_CAP, ipads) for ipads in ipads]
 
 #
@@ -103,12 +103,12 @@ def pytest_configure(config):
 #     取得測試裝置資訊
 #     """
 #     androids = pytestconfig.getoption('--androids')
-#     logstack.info(f'🟢 androids: {androids}')
+#     logging.info(f'🟢 androids: {androids}')
 #     if androids is None:
 #         return None
 #     if 'default' in androids:
 #         androids = ['local_device', 'pixel7_v14']
-#         logstack.info(f'🟢 default androids: {androids}')
+#         logging.info(f'🟢 default androids: {androids}')
 #     return [common.read_json_by(path.Data.JSON_ANDROID_CAPS, android) for android in androids]
 
 
@@ -159,7 +159,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     if total_cases != 0:
         pass_rate = round(pass_cases / total_cases * 100, 2)  # 計算test run中所有case的成功率，四捨五入到小數點第二位
         fail_rate = round(fail_cases / total_cases * 100, 2)  # 計算test run中所有case的失敗率，四捨五入到小數點第二位
-        logstack.info(f"pass_rate: {pass_rate}%, fail_rate: {fail_rate}%")
+        logging.info(f"pass_rate: {pass_rate}%, fail_rate: {fail_rate}%")
 
     ga.DBVar.TEST_REPORT.update({
         "@timestamp": iso_date,
@@ -205,7 +205,7 @@ def pytest_runtest_makereport(item, call):
                  "report_exception_log": report.longreprtext,
                  "capture_self_log": capture_self_log})
         except Exception as e:
-            logstack.error(f"{e}")
+            logging.error(f"{e}")
 
 #
 # def app_package(env):

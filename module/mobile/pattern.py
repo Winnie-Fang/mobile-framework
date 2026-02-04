@@ -1,6 +1,6 @@
 import re
 
-from huskypo import logstack
+import logging
 
 
 class ID:
@@ -189,13 +189,13 @@ def findall(pattern, text, index=None) -> str | list[str]:
     例如尋找 $123,456 就要設定為 r'(\\$\\d{1,3}(?:,\\d{3})*)' ，否則會只找到 ,456
     """
     matches = re.findall(pattern, text)
-    logstack.info(f'pattern:  {pattern}')
-    logstack.info(f'text:     {text}')
-    logstack.info(f'matches:  {matches}')
+    logging.info(f'pattern:  {pattern}')
+    logging.info(f'text:     {text}')
+    logging.info(f'matches:  {matches}')
     if index is not None:
         selected = matches[index]
-        logstack.info(f'index:    {index}')
-        logstack.info(f'selected: {selected}')
+        logging.info(f'index:    {index}')
+        logging.info(f'selected: {selected}')
         return selected
     return matches
 

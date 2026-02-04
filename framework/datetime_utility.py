@@ -1,4 +1,4 @@
-from huskypo import logstack
+import logging
 from datetime import datetime, date, time, timedelta
 import re
 
@@ -142,12 +142,12 @@ def remove_str_but_datetime(str_datetime: str, attr: str = 'datetime') -> str:
         try:
             return re.findall(r'\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}', str_datetime)[0]
         except IndexError:
-            logstack.info('沒有找到匹配格式的時間')
+            logging.info('沒有找到匹配格式的時間')
     elif attr == 'date':
         try:
             return re.findall(r'\d{4}/\d{2}/\d{2}', str_datetime)[0]
         except IndexError:
-            logstack.info('沒有找到匹配格式的時間')
+            logging.info('沒有找到匹配格式的時間')
     elif attr == 'date_eng':
         try:
             return re.findall(r'(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{1,2}, \d{4}', str_datetime)[0]
@@ -157,7 +157,7 @@ def remove_str_but_datetime(str_datetime: str, attr: str = 'datetime') -> str:
         try:
             return re.findall(r'\d{2}:\d{2}:\d{2}', str_datetime)[0]
         except IndexError:
-            logstack.info('沒有找到匹配格式的時間')
+            logging.info('沒有找到匹配格式的時間')
     else:
         return 0
 
@@ -182,11 +182,11 @@ def count_of_weekdays(target_weekday: int, start_date: date, end_date: date) -> 
     offset_total_days = (end_date - offset_start_date).days
     result = 1 + offset_total_days // 7
 
-    logstack.info(f'start_weekday: {start_weekday}')
-    logstack.info(f'target_weekday: {target_weekday}')
-    logstack.info(f'offset_days: {offset_days}')
-    logstack.info(f'offset_start_date: {offset_start_date}')
-    logstack.info(f'count_of_weekdays: {result}')
+    logging.info(f'start_weekday: {start_weekday}')
+    logging.info(f'target_weekday: {target_weekday}')
+    logging.info(f'offset_days: {offset_days}')
+    logging.info(f'offset_start_date: {offset_start_date}')
+    logging.info(f'count_of_weekdays: {result}')
 
     return result
 
@@ -201,10 +201,10 @@ def next_weekday_date(start_date: date, next_weekday: int) -> date:
     offset_days = offset_weekday if offset_weekday >= 0 else 7 + offset_weekday
     result = start_date + timedelta(days=offset_days)
 
-    logstack.info(f'start_weekday: {start_weekday}')
-    logstack.info(f'next_weekday: {next_weekday}')
-    logstack.info(f'offset_days: {offset_days}')
-    logstack.info(f'offset_start_date: {result}')
+    logging.info(f'start_weekday: {start_weekday}')
+    logging.info(f'next_weekday: {next_weekday}')
+    logging.info(f'offset_days: {offset_days}')
+    logging.info(f'offset_start_date: {result}')
 
     return result
 

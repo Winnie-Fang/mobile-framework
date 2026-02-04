@@ -5,11 +5,10 @@ from pathlib import Path
 from time import sleep
 
 import allure
-from huskypo import logstack
+import logging
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException, InvalidSelectorException
 from selenium.webdriver.remote.webelement import WebElement
 
-# from huskypo_extension import ex_common, ex_config
 from module.mobile.component.exception.ElementNotVisibleExceptions import ElementNotVisibleExceptions
 from module.mobile.component.exception.InvalidSelectorExceptions import InvalidSelectorExceptions
 from module.mobile.component.exception.NoSuchElementExceptions import NoSuchElementExceptions
@@ -82,7 +81,7 @@ class BaseObject:
             return False
 
         except Exception as e:
-            logstack.error(f'{e}')
+            logging.error(f'{e}')
             return False
 
     def handle_matcher(self, matcher: callable) -> WebElement | list[WebElement]:
@@ -90,19 +89,19 @@ class BaseObject:
             return matcher()
 
         except InvalidSelectorException as e:
-            logstack.info(e.msg)
+            logging.info(e.msg)
             raise InvalidSelectorExceptions(self.remark())
 
         except NoSuchElementException as e:
-            logstack.info(e.msg)
+            logging.info(e.msg)
             raise NoSuchElementExceptions(self.remark())
 
         except ElementNotVisibleException as e:
-            logstack.info(e.msg)
+            logging.info(e.msg)
             raise ElementNotVisibleExceptions(self.remark())
 
         except Exception as e:
-            logstack.error(f'{e}')
+            logging.error(f'{e}')
 
     def is_matcher_visible(self, matcher: callable) -> bool:
         try:
@@ -116,7 +115,7 @@ class BaseObject:
             return False
 
         except Exception as e:
-            logstack.error(f'{e}')
+            logging.error(f'{e}')
             return False
 
     def is_matcher(self, matcher: WebElement) -> bool:
@@ -136,7 +135,7 @@ class BaseObject:
             return False
 
         except Exception as e:
-            logstack.error(f'{e}')
+            logging.error(f'{e}')
             return False
         return True
 
@@ -211,7 +210,7 @@ x
         DeviceManager.get_driver().save_screenshot(png_path)
 
         final_path = png_path
-        logstack.info(f'image path: {final_path}')
+        logging.info(f'image path: {final_path}')
 
         if attach:
             attach_type = allure.attachment_type.JPG if attach_jpg else allure.attachment_type.PNG
@@ -286,11 +285,11 @@ x
             sleep(1)
             DeviceManager.get_driver().save_screenshot(str(file_path))
 
-            logstack.info(f"截圖已儲存至: {file_path}")
+            logging.info(f"截圖已儲存至: {file_path}")
             return str(file_path)
 
         except Exception as e:
-            logstack.error(f"截圖過程發生錯誤: {str(e)}")
+            logging.error(f"截圖過程發生錯誤: {str(e)}")
             return None
 
 
