@@ -40,8 +40,8 @@ class MUiOSOTPage(BaseObject):
     def service_title(self):
         return BasicComponent(
             lambda: WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((AppiumBy.IOS_CLASS_CHAIN,
-                                                                                           '**/XCUIElementTypeStaticText[`name == "企業行動密碼條款"`]'))),
-            remark=f"{self.remark()} > 企業行動密碼條款標題"
+                                                                                           '**/XCUIElementTypeStaticText[`name == "服務條款"`]'))),
+            remark=f"{self.remark()} > 服務條款"
         )
 
     # 共用元素(同意/確認)

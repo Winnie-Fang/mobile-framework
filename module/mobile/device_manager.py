@@ -29,7 +29,7 @@ class DeviceManager:
     DEVICES_CONF: Optional[dict] = None  # 讀進來的 JSON
     DRIVERS: Dict[str, Any] = {}  # role -> driver
     DEFAULT_ROLE: Optional[str] = None  # e.g. "old"
-    JSON_PATH = os.path.join(path.Data.JSON, 'devices.json')
+    JSON_PATH = os.path.join(path.Data.JSON, 'devices2.json')
 
     @classmethod
     def load_devices(cls, config_path: Optional[str] = None):
@@ -349,6 +349,7 @@ class DeviceManager:
         options.set_capability('enableMultiWindows', True)
         options.set_capability('appPackage', 'com.cathaybk.geb.cubuat')
         options.set_capability('appActivity', 'com.cathaybk.geb.feature.BootActivity')
+        # options.set_capability('appActivity', 'com.cathaybk.geb.cubuat.MainActivity')
         options.set_capability('appWaitActivity', "com.cathaybk.geb.feature.login.LoginActivity")
         options.set_capability('noReset', cls.KEEP_APP_STATE)
         options.set_capability('shouldTerminateApp', True)
@@ -358,12 +359,6 @@ class DeviceManager:
         # options.set_capability('app', PATH)
         # 動態 systemPort（平行 Android 必須唯一）
         # options.set_capability("systemPort",  8201)
-        # if system_port:
-        #     options.set_capability('systemPort', system_port)
-        #     options.set_capability('newCommandTimeout', 1800)  # 1800 秒
-        #     logstack.info("Debug模式:newCommandTimeout設為 1800 秒")
-        #     options.set_capability('newCommandTimeout', 100)  # 默認為 100 秒
-        #     logstack.info(f"非Debug模式:newCommandTimeout設為 100 秒")
 
         if cls.is_debug_mode():
             options.set_capability('newCommandTimeout', 1800)  # 1800 秒
@@ -397,7 +392,7 @@ class DeviceManager:
         options.set_capability('includeSafariInWebviews', True)
         options.set_capability('newCommandTimeout', 3000)  # 设置新命令的超时时间，单位是秒
         options.set_capability('showXcodeLog', True)  # 顯示 Xcode 日誌
-        options.set_capability('xcodeOrgId', 'cathayqa')
+        options.set_capability('xcodeOrgId', 'cathaytqa')
         # options.set_capability('app', "/Users/twinb00551192/Desktop/QA_file/app-artifact.ipa")
         # options.set_capability('app', PATH)
         driver = webdriver.Remote(Appium.LOCALHOST + Appium.PORT_4723, options=options)
@@ -478,40 +473,41 @@ class DeviceManager:
             raise ValueError(f"iOS device config 必須包含 udid/wdaLocalPort，收到：{device}")
 
         options = AppiumOptions()
-        options.set_capability("platformName", "iOS")
-        options.set_capability("automationName", "XCUITest")
+        options.set_capability("appium:platformName", "iOS")
+        options.set_capability("appium:automationName", "XCUITest")
 
         # 多裝置必備
-        options.set_capability("udid", device["udid"])
-        options.set_capability("wdaLocalPort", int(device["wdaLocalPort"]))
+        options.set_capability("appium:udid", device["udid"])
+        options.set_capability("appium:wdaLocalPort", int(device["wdaLocalPort"]))
 
         # 可選
         # options.set_capability("deviceName", device.get("deviceName", "iPhone"))
 
         # app / bundleId 二選一（實機通常 app，模擬器通常 bundleId）
         if device.get("app"):
-            options.set_capability("app", device["app"])
+            options.set_capability("appium:app", device["app"])
         elif device.get("bundleId"):
-            options.set_capability("bundleId", device["bundleId"])
+            options.set_capability("appium:bundleId", device["bundleId"])
         else:
             raise ValueError("iOS device config 需要提供 app 或 bundleId 其中一個")
 
         # 固定設定（保留你原本常用的）
-        options.set_capability("noReset", cls.KEEP_APP_STATE)
+        options.set_capability("appium:noReset", cls.KEEP_APP_STATE)
         # options.set_capability("forceAppLaunch", True)
         # options.set_capability("includeSafariInWebviews", True)
-        options.set_capability("newCommandTimeout", int(device.get("newCommandTimeout", 3000)))
-        options.set_capability("showXcodeLog", True)
-        options.set_capability("xcodeOrgId", 'FRJJ886SD8')
-        options.set_capability("xcodeSigningId", 'Apple Development')
-        options.set_capability("updatedWDABundleId", 'com.cathay.tqa.wda.FRJJ886SD8')
-        # options.set_capability("waitForQuiescence", False)
-        # options.set_capability("wdaConnectionTimeout", 240000)
+        # options.set_capability("appium:newCommandTimeout", int(device.get("newCommandTimeout", 3000)))
+        options.set_capability("appium:showXcodeLog", True)
+        options.set_capability("appium:xcodeOrgId", 'FRJJ886SD8')
+        # options.set_capability("appium:xcodeSigningId", 'Apple Development')
+        # options.set_capability("appium:updatedWDABundleId", 'com.cathaytqa.WebDriverAgentRunner')
+        options.set_capability("appium:updatedWDABundleId", 'com.facebook.WebDriverAgentRunner')
+        options.set_capability("appium:useNewWDA", False)
+        options.set_capability("appium:usePrebuiltWDA", True)
+
+        options.set_capability("wdaLaunchTimeout", 120000)
+        options.set_capability("wdaConnectionTimeout", 240000)
         # options.set_capability("wdaStartupRetries", 5)
         # options.set_capability("wdaStartupRetryInterval", 20000)
-
-
-
 
         # # 確保穩定
         # udid = device["udid"]
@@ -519,7 +515,7 @@ class DeviceManager:
         # options.set_capability("derivedDataPath", derived)
 
         if "mjpegServerPort" in device:
-            options.set_capability("mjpegServerPort", int(device["mjpegServerPort"]))
+            options.set_capability("appium:mjpegServerPort", int(device["mjpegServerPort"]))
 
         # return webdriver.Remote(server_url + device["appiumPort"], options=options)
         return webdriver.Remote(server_url + device["appiumPort"], options=options)
