@@ -21,8 +21,7 @@ if __name__ == "__main__":
     # pytest.main()
     pytest.main([
         '--platform','android',
-        '-m','gmb_login',
-        '--alluredir=./reports/allure_tmp'
+        '-m','gmb_login'
     ])
     # pytest.main([
     #     '--platform','ios',

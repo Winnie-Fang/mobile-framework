@@ -1,5 +1,7 @@
 import os
 import shutil
+import sys
+from io import StringIO
 
 import allure_combine
 from bs4 import BeautifulSoup as BS
@@ -28,9 +30,14 @@ def output_allure_html():
 
     # 整合 allure_index 內的 index.html 並在其中生成獨立報告 complete.html
     try:
+        # logging.info(f'🔄 開始生成 Allure HTML 報告...')
+        # old_stdout = sys.stdout
+        # sys.stdout = StringIO()
         allure_combine.combine_allure(path.Reports.ALLURE_INDEX)
+        # sys.stdout = old_stdout
         logging.info(f'✅ 成功: 已生成 complete.html 於 index_dir: {path.Reports.ALLURE_INDEX}')
     except Exception as e:
+        # sys.stdout = old_stdout
         logging.error(f'❌ 失敗: 未生成 complete.html 於 index_dir: {path.Reports.ALLURE_INDEX}\n{e}')
         logging.warning(f'🟡 請確認 allure commandline 版本介於 2.21.0 和 2.22.0 之間')
 

@@ -1,10 +1,8 @@
-import os
 import re
 import time
 from datetime import datetime
 
 import pytest
-from bson.json_util import default
 
 import logging
 
@@ -20,15 +18,11 @@ def pytest_addoption(parser):
     # GlobalVar.PLATFORM = "ios"
 
     parser.addoption('--allure', action='store', default='allure', type=str, help="CI用，設置allure在執行機器的絕對路徑")
-    parser.addoption('--platform', action='store',  default='android', choices=['ios', 'android'], type=str,
+    parser.addoption('--platform', action='store', default='android', choices=['ios', 'android'], type=str,
                      help="設定測試平台")
     parser.addoption('--product', action='store', default='cube', choices=['cube'], type=str, help="設定測試產品")
     parser.addoption('--env', action='store', default='uat', choices=['stg', 'uat', 'ut'], type=str,
                      help="設定測試環境")
-    # parser.addoption('--iphones', action='append', help="設定多部iphone測試裝置")
-    # parser.addoption('--androids', action='append', help="設定測試裝置")
-    # parser.addoption('--ipads', action='append', help="設定ipad測試裝置", default=['iPad mini (A17 Pro)'])
-    # # parser.addoption('--ipads', action='append', help="設定ipad測試裝置")
     parser.addoption('--aws', action='store_true', default=False, help="執行 aws device farm 流程")
     parser.addoption('--app_path', action='store', type=str, help="APP檔案路徑")
 
@@ -52,11 +46,10 @@ def env(pytestconfig):
     platform = pytestconfig.getoption('--platform')
     product = pytestconfig.getoption('--product')
     env = pytestconfig.getoption('--env')
-    # GlobalVar.PLATFORM = platform
-    # GlobalVar.PLATFORM = "ios"
     GlobalVar.PRODUCT = product
     GlobalVar.ENV = env
     return common.read_json_by(path.Data.JSON_APP_ENV, platform, product, env)
+
 
 def pytest_configure(config):
     """
@@ -64,52 +57,6 @@ def pytest_configure(config):
     """
     global_adapter.CommonVar.PLATFORM = config.getoption('--platform').lower()
     global_adapter.CommonVar.APP_PATH = config.getoption('--app_path')
-
-# 已棄用
-# @pytest.fixture(scope='session', autouse=True)
-# def iphones(pytestconfig):
-#     """
-#     取得測試裝置資訊
-#     """
-#     iphones = pytestconfig.getoption('--iphones')
-#     logging.info(f'🟢 iphones: {iphones}')
-#     if not iphones:
-#         return None
-#     if 'default' in iphones:
-#         iphones = ['iphone 16 pro']
-#         logging.info(f'🟢 default iphones: {iphones}')
-#     return [common.read_json_by(path.Data.JSON_IOS_CAP, iphone) for iphone in iphones]
-
-
-# @pytest.fixture(scope='session', autouse=True)
-# def ipads(pytestconfig):
-#     """
-#     取得測試裝置資訊
-#     """
-#     GlobalVar.PLATFORM = "ios"
-#     ipads = pytestconfig.getoption('--ipads')
-#     logging.info(f'🟢 ipads: {ipads}')
-#     if ipads is None:
-#         return None
-#     if 'default' in ipads:
-#         ipads = ['iPad mini (A17 Pro)']
-#         logging.info(f'🟢 default ipads: {ipads}')
-#     return [common.read_json_by(path.Data.JSON_IOS_CAP, ipads) for ipads in ipads]
-
-#
-# @pytest.fixture(scope='session', autouse=True)
-# def androids(pytestconfig):
-#     """
-#     取得測試裝置資訊
-#     """
-#     androids = pytestconfig.getoption('--androids')
-#     logging.info(f'🟢 androids: {androids}')
-#     if androids is None:
-#         return None
-#     if 'default' in androids:
-#         androids = ['local_device', 'pixel7_v14']
-#         logging.info(f'🟢 default androids: {androids}')
-#     return [common.read_json_by(path.Data.JSON_ANDROID_CAPS, android) for android in androids]
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -206,10 +153,3 @@ def pytest_runtest_makereport(item, call):
                  "capture_self_log": capture_self_log})
         except Exception as e:
             logging.error(f"{e}")
-
-#
-# def app_package(env):
-#     return env['bundleid']
-
-
-
