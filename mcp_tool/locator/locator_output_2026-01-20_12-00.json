@@ -1,0 +1,513 @@
+{
+  "platforms": {
+    "Android": {
+      "pages": {
+        "登入頁": [
+          {
+            "name": "企業戶ID輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/companyIdEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": ""
+              },
+              "actions": ["click", "set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "使用者代號輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/userNameEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": ""
+              },
+              "actions": ["set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "使用者密碼輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/pdEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": ""
+              },
+              "actions": ["click", "set_value"],
+              "error": ""
+            }
+          },
+          {
+            "name": "登入按鈕",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/loginButton",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "登入"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          },
+          {
+            "name": "登入企網銀標籤",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "登入企網銀",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "content-desc",
+                "text": "登入企網銀"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          },
+          {
+            "name": "驗證網銀交易標籤",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "驗證網銀交易",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "content-desc",
+                "text": "驗證網銀交易"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          },
+          {
+            "name": "忘記代號密碼連結",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/forgotCodePasswordTextView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "忘記代號、密碼"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "Slogan文字",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/sloganTextView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "Global MyB2B"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "企業網路銀行文字",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/gmbTextView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "企業網路銀行"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "掃描按鈕",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/scanImageView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "resource-id",
+                "text": "com.cathaybk.geb.cubuat:id/scanImageView"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "選單按鈕",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/menuImageView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "resource-id",
+                "text": "com.cathaybk.geb.cubuat:id/menuImageView"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "語言文字",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/localeTextView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "繁中"
+              },
+              "actions": [],
+              "error": ""
+            }
+          }
+        ],
+        "總覽頁": [
+          {
+            "name": "總覽標題",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/navigation_bar_item_large_label_view",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "總覽"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "帳戶摘要標題",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/accountOverviewTextView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "帳戶摘要"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "臺幣帳戶標籤",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "臺幣帳戶",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "content-desc",
+                "text": "臺幣帳戶"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "外幣帳戶標籤",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "外幣帳戶",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "content-desc",
+                "text": "外幣帳戶"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "總覽導航按鈕",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "總覽",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "content-desc",
+                "text": "總覽"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "明細導航按鈕",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "明細",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "content-desc",
+                "text": "明細"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          },
+          {
+            "name": "交易導航按鈕",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "交易",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "content-desc",
+                "text": "交易"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          },
+          {
+            "name": "更多導航按鈕",
+            "strategy": "AppiumBy.ACCESSIBILITY_ID",
+            "selector": "更多",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "content-desc",
+                "text": "更多"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          }
+        ],
+        "明細頁": [
+          {
+            "name": "明細標題",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/navigation_bar_item_large_label_view",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "明細"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "帳戶明細列表",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/transactionListRecyclerView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "resource-id",
+                "text": "com.cathaybk.geb.cubuat:id/transactionListRecyclerView"
+              },
+              "actions": [],
+              "error": ""
+            }
+          }
+        ],
+        "交易頁": [
+          {
+            "name": "交易標題",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/navigation_bar_item_large_label_view",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "交易"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "交易功能列表",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/paymentRecyclerView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "resource-id",
+                "text": "com.cathaybk.geb.cubuat:id/paymentRecyclerView"
+              },
+              "actions": [],
+              "error": ""
+            }
+          }
+        ],
+        "更多頁": [
+          {
+            "name": "更多標題",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/navigation_bar_item_large_label_view",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "更多"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "更多選項列表",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/moreRecyclerView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "resource-id",
+                "text": "com.cathaybk.geb.cubuat:id/moreRecyclerView"
+              },
+              "actions": [],
+              "error": ""
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+

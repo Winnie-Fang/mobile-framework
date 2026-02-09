@@ -1,0 +1,259 @@
+{
+  "platforms": {
+    "Android": {
+      "pages": {
+        "登入頁": [
+          {
+            "name": "企業戶ID輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/companyIdEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "請輸入"
+              },
+              "actions": ["set_value"],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          },
+          {
+            "name": "使用者代號輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/userNameEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "請輸入"
+              },
+              "actions": ["set_value"],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          },
+          {
+            "name": "使用者密碼輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/pdEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "請輸入"
+              },
+              "actions": ["set_value"],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          },
+          {
+            "name": "登入按鈕",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/loginButton",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "登入"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          }
+        ],
+        "信任裝置設定頁": [
+          {
+            "name": "下次再說按鈕",
+            "strategy": "AppiumBy.XPATH",
+            "selector": "//android.widget.TextView[@text=\"下次再說\"]/parent::*",
+            "note": "無 accessibility id 或 resource-id",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "下次再說"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          }
+        ],
+        "裝置提醒頁": [
+          {
+            "name": "我知道了按鈕",
+            "strategy": "AppiumBy.XPATH",
+            "selector": "//android.widget.TextView[@text=\"我知道了\"]/parent::*",
+            "note": "無 accessibility id 或 resource-id",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "我知道了"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          }
+        ],
+        "總覽頁": [
+          {
+            "name": "總覽標題文字",
+            "strategy": "AppiumBy.XPATH",
+            "selector": "//android.widget.TextView[@text=\"總覽\"]",
+            "note": "無 accessibility id 或 resource-id",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "總覽"
+              },
+              "actions": [],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          },
+          {
+            "name": "臺幣轉匯按鈕",
+            "strategy": "AppiumBy.XPATH",
+            "selector": "//android.widget.TextView[@text=\"臺幣轉匯\"]/parent::*",
+            "note": "無 accessibility id 或 resource-id",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "臺幣轉匯"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          },
+          {
+            "name": "外幣買賣按鈕",
+            "strategy": "AppiumBy.XPATH",
+            "selector": "//android.widget.TextView[@text=\"外幣買賣\"]/parent::*",
+            "note": "無 accessibility id 或 resource-id",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "外幣買賣"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          },
+          {
+            "name": "繳費繳稅按鈕",
+            "strategy": "AppiumBy.XPATH",
+            "selector": "//android.widget.TextView[@text=\"繳費繳稅\"]/parent::*",
+            "note": "無 accessibility id 或 resource-id",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "繳費繳稅"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          },
+          {
+            "name": "總覽底部按鈕",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/home_account_review",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "content-desc",
+                "text": "總覽"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          }
+        ],
+        "功能信任頁": [
+          {
+            "name": "取消按鈕",
+            "strategy": "AppiumBy.XPATH",
+            "selector": "//android.widget.TextView[@text=\"取消\"]/parent::*",
+            "note": "無 accessibility id 或 resource-id",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "取消"
+              },
+              "actions": ["click"],
+              "error": "",
+              "timestamp": "2026-01-15T12:00:00Z"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+

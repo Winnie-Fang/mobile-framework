@@ -1,0 +1,81 @@
+{
+  "總覽頁": [
+    {
+      "name": "總覽頁標題",
+      "platform": "Android",
+      "strategy": "AppiumBy.ANDROID_UIAUTOMATOR",
+      "selector": "new UiSelector().text(\"總覽\").instance(0)",
+      "note": ""
+    },
+    {
+      "name": "處理清單",
+      "platform": "Android",
+      "strategy": "AppiumBy.ID",
+      "selector": "com.cathaybk.geb.cubuat:id/toDoListTextView",
+      "note": ""
+    },
+    {
+      "name": "待覆核交易",
+      "platform": "Android",
+      "strategy": "AppiumBy.ANDROID_UIAUTOMATOR",
+      "selector": "new UiSelector().text(\"待覆核交易\")",
+      "note": ""
+    },
+    {
+      "name": "近 1 年預約",
+      "platform": "Android",
+      "strategy": "AppiumBy.ANDROID_UIAUTOMATOR",
+      "selector": "new UiSelector().text(\"近 1 年預約\")",
+      "note": ""
+    },
+    {
+      "name": "送審中交易",
+      "platform": "Android",
+      "strategy": "AppiumBy.ANDROID_UIAUTOMATOR",
+      "selector": "new UiSelector().text(\"送審中交易\")",
+      "note": ""
+    },
+    {
+      "name": "帳戶摘要",
+      "platform": "Android",
+      "strategy": "AppiumBy.ID",
+      "selector": "com.cathaybk.geb.cubuat:id/accountOverviewTextView",
+      "note": ""
+    },
+    {
+      "name": "總覽下方功能列",
+      "platform": "Android",
+      "strategy": "AppiumBy.ID",
+      "selector": "com.cathaybk.geb.cubuat:id/bottom_nav",
+      "note": ""
+    },
+    {
+      "name": "總覽功能",
+      "platform": "Android",
+      "strategy": "AppiumBy.ACCESSIBILITY_ID",
+      "selector": "總覽",
+      "note": ""
+    },
+    {
+      "name": "明細功能",
+      "platform": "Android",
+      "strategy": "AppiumBy.ACCESSIBILITY_ID",
+      "selector": "明細",
+      "note": ""
+    },
+    {
+      "name": "交易功能",
+      "platform": "Android",
+      "strategy": "AppiumBy.ACCESSIBILITY_ID",
+      "selector": "交易",
+      "note": ""
+    },
+    {
+      "name": "更多功能",
+      "platform": "Android",
+      "strategy": "AppiumBy.ACCESSIBILITY_ID",
+      "selector": "更多",
+      "note": ""
+    }
+  ]
+}

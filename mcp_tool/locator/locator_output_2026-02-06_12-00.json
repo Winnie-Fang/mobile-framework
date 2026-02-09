@@ -1,0 +1,74 @@
+{
+  "platforms": {
+    "Android": {
+      "pages": {
+        "總覽頁面": [
+          {
+            "name": "總覽標題",
+            "strategy": "-android uiautomator",
+            "selector": "new UiSelector().text(\"總覽\")",
+            "note": "",
+            "validation": {
+              "status": "success",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": false,
+              "is_clickable": false,
+              "value": "總覽",
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "帳戶摘要標題",
+            "strategy": "id",
+            "selector": "com.cathaybk.geb.cubuat:id/accountOverviewTextView",
+            "note": "",
+            "validation": {
+              "status": "success",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": false,
+              "is_clickable": false,
+              "value": "帳戶摘要",
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "快捷交易區塊",
+            "strategy": "xpath",
+            "selector": "//android.widget.TextView[contains(@text,'快捷')]",
+            "note": "檢查快捷交易區塊是否存在，由於只有檢視權限，應不存在",
+            "validation": {
+              "status": "not_found",
+              "found_count": 0,
+              "is_visible": false,
+              "is_enabled": false,
+              "is_clickable": false,
+              "value": "",
+              "actions": [],
+              "error": "Element not found"
+            }
+          },
+          {
+            "name": "處理清單區塊",
+            "strategy": "xpath",
+            "selector": "//android.widget.TextView[contains(@text,'處理')]",
+            "note": "檢查處理清單區塊是否存在，由於只有檢視權限，應不存在",
+            "validation": {
+              "status": "not_found",
+              "found_count": 0,
+              "is_visible": false,
+              "is_enabled": false,
+              "is_clickable": false,
+              "value": "",
+              "actions": [],
+              "error": "Element not found"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

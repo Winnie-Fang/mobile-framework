@@ -1,0 +1,221 @@
+{
+  "platforms": {
+    "Android": {
+      "pages": {
+        "登入頁": [
+          {
+            "name": "企業戶ID輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/companyIdEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "請輸入"
+              },
+              "actions": ["send_keys"],
+              "error": ""
+            }
+          },
+          {
+            "name": "使用者代號輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/userNameEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "請輸入"
+              },
+              "actions": ["send_keys"],
+              "error": ""
+            }
+          },
+          {
+            "name": "使用者密碼輸入框",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/pdEditText",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "請輸入"
+              },
+              "actions": ["send_keys"],
+              "error": ""
+            }
+          },
+          {
+            "name": "登入按鈕",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/loginButton",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "登入"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          },
+          {
+            "name": "未正常登出彈窗內容",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/dialog_common_message",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "您上次沒有正常登出，或是已在其他裝置登入，要改為登入目前的裝置嗎？"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "未正常登出登入按鈕",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/dialog_common_right_btn",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "登入"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          },
+          {
+            "name": "提醒裝置尚未加入信任清單內容",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/dialog_common_message",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "此裝置尚未加入您的信任清單，可能導致部分功能無法使用。"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "我知道了按鈕",
+            "strategy": "AppiumBy.ANDROID_UIAUTOMATOR",
+            "selector": "new UiSelector().className(\"android.widget.Button\")",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": true,
+              "value": {
+                "source": "text",
+                "text": "我知道了"
+              },
+              "actions": ["click"],
+              "error": ""
+            }
+          }
+        ],
+        "總覽頁": [
+          {
+            "name": "總覽標題",
+            "strategy": "AppiumBy.ANDROID_UIAUTOMATOR",
+            "selector": "new UiSelector().text(\"總覽\").instance(0)",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "總覽"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "帳戶摘要",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/accountOverviewTextView",
+            "note": "",
+            "validation": {
+              "status": "PASS",
+              "found_count": 1,
+              "is_visible": true,
+              "is_enabled": true,
+              "is_clickable": false,
+              "value": {
+                "source": "text",
+                "text": "帳戶摘要"
+              },
+              "actions": [],
+              "error": ""
+            }
+          },
+          {
+            "name": "處理清單",
+            "strategy": "AppiumBy.ID",
+            "selector": "com.cathaybk.geb.cubuat:id/toDoListTextView",
+            "note": "",
+            "validation": {
+              "status": "FAIL",
+              "found_count": 0,
+              "is_visible": false,
+              "is_enabled": false,
+              "is_clickable": false,
+              "value": {
+                "source": "",
+                "text": ""
+              },
+              "actions": [],
+              "error": "Element not found"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
